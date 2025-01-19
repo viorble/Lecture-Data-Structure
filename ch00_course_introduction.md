@@ -3,13 +3,8 @@ marp: true
 theme: default
 paginate: true
 ---
-# Welcome to Data Structure
-- Data structures are everywhere
-- Data structures are for every programmer
-![bg right:60% w:300 Data structure are everywhere](https://drek4537l1klr.cloudfront.net/larocca3/v-1/Figures/01__image001.png)
-![bg right:60% w:300 Data Structure Material in Git](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*J38nYZU7gzu-4lQmtjlSUw.jpeg)
---- 
-
+# 資料結構與演算法
+- 講師：林志偉
 - 教材：https://github.com/mingfujacky/Lecture-Data-Structure.git
 ![bg right:30% w:300 Data Structure Material in Git](files/image/qrcode_lecture_data_structure.png)
 
@@ -27,8 +22,8 @@ paginate: true
 ---
 # 課程規劃
 - #### 課程目標
-  *-* Introduce basic data structures that every developer needs to know.
-  *-* Use Python to implement basic algorithms to manipulate data.
+  *-* Introduce basic data structures that every programmer needs to know.
+  *-* Use Python to implement basic algorithms to sharpen coding skill.
 - #### 授課方式
   *-* 教材講解
   *-* 課堂 Lab 實作 (上課請攜帶電腦)
