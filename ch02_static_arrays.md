@@ -33,3 +33,23 @@ Class          |Fixed Size|Fixed Type|Implementation
 **Numpy.array**|YES   |YES              |static array
 
 [Array in Python](../Lecture-Data-Structure/code/grokking_ds/ch02_array_in_python.py)
+
+---
+# Implement Arrays as a Core Language Feature
+  - allocated in continuous memory
+  - restricted to storing data of the same type
+  - size of arrays must be decided when the array is created
+
+#### The core array class will have the following methods:
+    - Initialize: create an array with a given size and type
+    - Create: initiate an array
+    - Get the value at a given index
+    - Get the number of elements in the array
+    - Display the array
+
+---
+# Lab
+Use class Array to create an array object
+- size is 10
+- store 4 integers
+- traverse the array to print all elements
