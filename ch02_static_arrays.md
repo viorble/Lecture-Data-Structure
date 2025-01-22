@@ -32,20 +32,22 @@ Class          |Fixed Size|Fixed Type|Implementation
 **array.array**|NO    |YES              |dynamic array like
 **Numpy.array**|YES   |YES              |static array
 
-[Array in Python](../Lecture-Data-Structure/code/grokking_ds/ch02_array_in_python.py)
+[Code: array-like in Python](../Lecture-Data-Structure/code/ch02a_python_array_like.py)
 
 ---
-# Implement Arrays as a Core Language Feature
+### Implement Arrays as a Core Language Feature
   - allocated in continuous memory
   - restricted to storing data of the same type
   - size of arrays must be decided when the array is created
 
-#### The core array class will have the following methods:
-    - Initialize: create an array with a given size and type
-    - Create: initiate an array
-    - Get the value at a given index
-    - Get the number of elements in the array
-    - Display the array
+### The core array class will have the following methods:
+  - Initialize: create an array with a given size and type
+  - Create: initiate an array
+  - Get the value at a given index
+  - Get the number of elements in the array
+  - Display the array
+
+[Code: core array](../Lecture-Data-Structure/code/ch02b_core_array.py)
 
 ---
 # Lab
@@ -53,3 +55,18 @@ Use class Array to create an array object
 - size is 10
 - store 4 integers
 - traverse the array to print all elements
+
+---
+
+# Let Array be Left-Justified
+![bg right:40% w:500 left-justified](../Lecture-Data-Structure/restricted/a_left_justified_array.png)
+
+ - Basically, we don’t have to follow any order when assigning new values to its elements
+ - However, We might keep track of which elements are meaningful to application.
+ - In most cases, the order in which we store the elements won’t matter.
+ - Thus, we can simply add the new elements at the first unused index in the array and keep the array left-justified: 
+ - That is, if we add k ≤ n elements to our array, they will be at the indexes from 0 to k-1.
+
+---
+# A Class for Unsorted Arrays
+

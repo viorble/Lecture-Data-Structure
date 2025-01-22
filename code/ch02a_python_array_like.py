@@ -15,7 +15,7 @@ print(
 # implement array by array
 from array import array
 
-my_array = array("i", [1, 2, 3])  # same data types
+my_array = array("l", [1, 2, 3])  # same data types, l is signed integer
 my_array.append(4)  # not fixed size
 print(my_array[3])  # direct access by index
 print(id(my_array[0]), id(my_array[1]), id(my_array[2]))  # continuous memory allocation
