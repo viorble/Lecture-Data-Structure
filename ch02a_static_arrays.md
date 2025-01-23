@@ -54,19 +54,3 @@ Class          |Fixed Size|Fixed Type|Implementation
 Use class Array to create an array object
 - size is 10
 - store 4 integers
-- traverse the array to print all elements
-
----
-
-# Let Array be Left-Justified
-![bg right:40% w:500 left-justified](../Lecture-Data-Structure/restricted/a_left_justified_array.png)
-
- - Basically, we don’t have to follow any order when assigning new values to its elements
- - However, We might keep track of which elements are meaningful to application.
- - In most cases, the order in which we store the elements won’t matter.
- - Thus, we can simply add the new elements at the first unused index in the array and keep the array left-justified: 
- - That is, if we add k ≤ n elements to our array, they will be at the indexes from 0 to k-1.
-
----
-# A Class for Unsorted Arrays
-

@@ -35,14 +35,6 @@ class SortedArray:
         return self._max_size
 
     def insert(self, value):
-        """
-        Functionality:
-            Inserts the given value into the sorted array while maintaining the sorted order.
-            If the array is already full, raises a ValueError.
-            Otherwise, shifts elements to the right to make room for the new value and inserts
-            it in the correct position to keep the array sorted.
-        """
-
         if self._size >= self._max_size:
             raise ValueError(
                 f"The array is already full, maximum size: {self._max_size}"
@@ -60,14 +52,6 @@ class SortedArray:
         self._size += 1
 
     def linear_search(self, target):
-        """
-        Functionality:
-            Performs a linear search over the values in the sorted array.
-            Since the array is sorted, we can stop searching once we pass the point
-            where the target value would be located.
-            Returns the index of the target value if found, otherwise returns None.
-        """
-
         for i in range(self._size):
             if self._array[i] == target:
                 return i
@@ -78,16 +62,6 @@ class SortedArray:
         return None
 
     def binary_search(self, target):
-        """
-        Functionality:
-            Performs a binary search on the sorted array.
-            Keeps track of left and right indices, and calculates the midpoint index.
-            Checks if the midpoint value matches the target. If so, returns the midpoint index.
-            Otherwise, recurses on either the left or right half of the array depending on if the
-            midpoint value is greater than or less than the target.
-            Returns the index if found, otherwise returns None if the target is not found.
-        """
-
         left = 0
         right = self._size - 1
         while left <= right:
@@ -102,14 +76,6 @@ class SortedArray:
         return None
 
     def delete(self, target):
-        """
-        Functionality:
-            Finds the index of the target value using the find method.
-            If the target is not found, raises a ValueError.
-            Otherwise, shifts all elements after the target to the left to fill in the gap.
-            If it succeeds, it decrements the size of the array by 1.
-        """
-
         index = self.binary_search(target)
         if index is None:
             raise ValueError(
@@ -122,61 +88,5 @@ class SortedArray:
         self._size -= 1
 
     def traverse(self, callback):
-        """
-        Functionality:
-            Iterates over the values in the sorted array and applies the given callback function to each value.
-        """
-
         for i in range(self._size):
             callback(self._array[i])
-
-
-# test sorted array
-if __name__ == "__main__":
-
-    # initialization method
-    a = SortedArray(9)
-    a.insert(1)
-    a.insert(2)
-    a.insert(4)
-    a.insert(5)
-    a.insert(6)
-    print(f"Init: max_size:{a.max_size()}, current length: {len(a)}")
-    print(f"{a = }")
-
-    # insert value 3
-    print("Insert:")
-    a.insert(3)
-    print(f"max_size:{a.max_size()}, current length: {len(a)}")
-    print(f"{a = }")
-
-    # delete value 4
-    print("Delete:")
-    a = SortedArray(9)
-    a.insert(0)
-    a.insert(1)
-    a.insert(4)
-    a.insert(7)
-    a.insert(9)
-    print(f"Init: max_size:{a.max_size()}, current length: {len(a)}")
-    print(f"{a = }")
-    a.delete(4)
-    print(f"{a = }")
-
-    # linear search
-    print("Linear search:")
-    a = SortedArray(9)
-    a.insert(1)
-    a.insert(2)
-    a.insert(3)
-    a.insert(4)
-    a.insert(5)
-    a.insert(6)
-    a.insert(7)
-    a.insert(9)
-    a.insert(10)
-    print(f"{a = }")
-    index = a.linear_search(8)
-    print(f"{index = }")
-    index = a.binary_search(10)
-    print(f"{index = }")

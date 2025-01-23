@@ -64,46 +64,33 @@ class UnsortedArray:
         for index in range(self._size):
             callback(self._array[index])
 
+    def max_min(self):
+        if self._size == 0:
+            raise ValueError("Empty array")
+        max_value = self._array[0]
+        min_value = self._array[0]
+        max_index = 0
+        min_index = 0
+        for index in range(1, self._size):
+            if self._array[index] > max_value:
+                max_value = self._array[index]
+                max_index = index
+            if self._array[index] < min_value:
+                min_value = self._array[index]
+                min_index = index
+        return f"{max_index=}, {max_value=}, {min_index=}, {min_value=}"
 
-# test unsorted array
-if __name__ == "__main__":
+    def clear(self):
+        self._size = 0
 
-    # initialization method
-    a = UnsortedArray(9)
-    a.insert(0)
-    a.insert(7)
-    a.insert(-1)
-    a.insert(3)
-    print(f"Init: max_size:{a.max_size()}, current length: {len(a)}")
-    print(f"{a[1]=}")
-    try:
-        print(f"{a[6]=}")
-    except IndexError as e:
-        print(e)
-    print(a)
-    print()
 
-    # insert method
-    print("Insert:")
-    a.insert(-2)  # insert value -2
-    print(a)
-    print(f"max_size:{a.max_size()}, current length: {len(a)}")
-    print()
-
-    # delete method
-    print("Delete:")
-    a.delete(2)  # delete index 2, its value is -1
-    print(a)
-    print(f"max_size:{a.max_size()}, current length: {len(a)}")
-    print()
-
-    # find method
-    print("Find:")
-    print("index:", a.find(7))  # find value 7
-    print("index:", a.find(10))  # find value 2
-    print()
-
-    # traverse method
-    print("Traverse:")
-    a.traverse(print)
-    a.traverse(lambda x: print(x, end=" "))
+a = UnsortedArray(5)
+a.insert(1)
+a.insert(-1)
+a.insert(3)
+a.insert(0)
+print(a)
+print(a.max_min())
+a.clear()
+print(f"max_size:{a.max_size()}, current length: {len(a)}")
+print(a)
