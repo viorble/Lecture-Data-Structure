@@ -4,39 +4,17 @@ sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/.venv/lib/python3.13/site-packages"
 )
 sys.path.append(
-    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/code/grokking_ds"
+    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/code"
 )
 from arrays.core import Array
 
 
 class UnsortedArray:
-    """Return a new unsorted array whose items are restricted by typecode, and
-    that can contain at most `max_size` elements.
+    """Return a new unsorted array whose items are restricted by typecode, and that can contain at most `max_size` elements.
 
-    Arrays represent basic values and behave very much like Python list, except
-    the type of objects stored in them is constrained. The type is specified
-    at object creation time by using a type code, which is a single character.
-    The following type codes are defined:
-
-        Type code   C Type             Minimum size in bytes
-        'b'         signed integer     1
-        'B'         unsigned integer   1
-        'u'         Unicode character  2
-        'h'         signed integer     2
-        'H'         unsigned integer   2
-        'i'         signed integer     2
-        'I'         unsigned integer   2
-        'l'         signed integer     4
-        'L'         unsigned integer   4
-        'q'         signed integer     8
-        'Q'         unsigned integer   8
-        'f'         floating point     4
-        'd'         floating point     8
-
-     Parameters:
-         max_size (int): The maximum number of elements the array can hold.
-         typecode (str, optional): The typecode of the array. Defaults to 'l' for int.
-
+    Parameters:
+    max_size (int): The maximum number of elements the array can hold.
+    typecode (str, optional): The typecode of the array. Defaults to 'l' for int.
     """
 
     def __init__(self, max_size, typecode="l"):
@@ -45,83 +23,28 @@ class UnsortedArray:
         # The actual number of elements stored in the array
         self._size = 0
 
-    def __len__(self) -> int:
-        """
-        Return the number of elements in the array.
-
-        Parameters:
-            None
-
-        Returns:
-            int: The number of elements in the array.
-        """
-
+    def __len__(self):
         return self._size
 
-    def __getitem__(self, index) -> Union[int, float]:
-        """
-        Get the value at the given index.
-
-        Parameters:
-            index (int): The index to get the value from.
-
-        Returns:
-            Union[int, float]: The value at the given index.
-        """
-
+    def __getitem__(self, index):
         if index < 0 or index >= self._size:
             raise IndexError(f"Index out of bound: {index}")
         return self._array[index]
 
-    def __repr__(self) -> str:
-        """
-        Return the string representation of the array.
-
-        Parameters:
-            None
-
-        Returns:
-            str: The string representation of the array.
-        """
-
+    def __repr__(self):
         return f"UnsortedArray({repr(self._array._array[:self._size])})"
 
-    def max_size(self) -> int:
-        """
-        Return the number of elements that the array can hold.
-
-        Parameters:
-            None
-
-        Returns:
-            int: The maximum size of the array.
-
-        """
-
+    def max_size(self):
         return self._max_size
 
-    def insert(self, new_entry) -> None:
-        """
-        Insert an entry into an unsorted array.
-
-        Parameters:
-            new_entry (Any): The entry to insert.
-        """
-
+    def insert(self, new_entry):
         if self._size >= len(self._array):
             raise ValueError("The array is already full")
         else:
             self._array[self._size] = new_entry
             self._size += 1
 
-    def delete(self, index) -> None:
-        """
-        Delete an entry at the given index from an unsorted array.
-
-        Parameters:
-            index (int): The index of the entry to delete.
-        """
-
+    def delete(self, index):
         if self._size == 0:
             raise ValueError("Delete from an empty array")
         elif index < 0 or index >= self._size:
@@ -130,17 +53,7 @@ class UnsortedArray:
             self._array[index] = self._array[self._size - 1]
             self._size -= 1
 
-    def find(self, target) -> int:
-        """
-        Find the index of a target entry in an unsorted array.
-
-        Parameters:
-            target (Any): The entry to search for.
-
-        Returns:
-            int: The index of the first occurrence of the target entry, if found, else None.
-        """
-
+    def find(self, target):
         for index in range(0, self._size):
             if self._array[index] == target:
                 return index
@@ -148,12 +61,40 @@ class UnsortedArray:
         return None
 
     def traverse(self, callback):
-        """
-        Traverse an unsorted array and call a callback function on each element.
-
-        Parameters:
-            callback (function): The function to call on each element.
-        """
-
         for index in range(self._size):
             callback(self._array[index])
+
+
+if __name__ == "__main__":
+    a = UnsortedArray(5)
+    print(f"max_size:{a.max_size()}, current length: {len(a)}")
+    print(a)
+    a.insert(10)
+    a.insert(20)
+    a.insert(30)
+    a.insert(40)
+    print(a)
+    # a.delete(2)
+    # print(a)
+    # print(a.find(20))
+    # print(a.find(30))
+    # print(a.find(100))
+    # a.traverse(print)
+    # print(a.max_size())
+    # try:
+    #     a.insert(100)
+    # except ValueError as e:
+    #     print(e)
+    # try:
+    #     a.delete(100)
+    # except ValueError as e:
+    #     print(e)
+    # try:
+    #     a.delete(1)
+    #     a.delete(1)
+    #     a.delete(1)
+    #     a.delete(1)
+    #     a.delete(1)
+    # except ValueError as e:
+    #     print(e)
+    # print(a)
