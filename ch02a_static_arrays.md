@@ -1,7 +1,55 @@
 ---
 marp: true
 theme: default
+class: invert
+size: 16:9
 paginate: true
+footer: 國立陽明交通大學 電子與光子學士學位學程
+headingDivider: 1
+style: |
+  section::after {
+    content: attr(data-marpit-pagination) '/' attr(data-marpit-pagination-total);
+  }
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .small-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .small-grid img {
+    width: 50%;
+  }
+  .middle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .middle-grid img {
+    width: 75%;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .grid img {
+    width: 100%;
+  }
+  .red-text {
+    color: red;
+  }
+  
+  .blue-text {
+    color: blue;  
+  }
+
+  .small-text {
+    font-size: 0.75rem;
+  }
 ---
 # What is a Array
 - Array is a data structure consisting of a collection of elements, of same memory size, each identified by an index. 
