@@ -52,10 +52,18 @@ style: |
   }
 ---
 # Python Code Hierarchy
-![bg right:70% w:90% Module](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*XxM0nwQn3p0Fxd1__-VBlw.png)
+![bg right:50% w:80% Module](https://www.beejok.com/tutorial_python_intermediate/img/packages_intro-01.jpg)
 
-# [Module](https://github.com/mingfujacky/Lecture-Python/blob/main/2_python_middle/K_module.ipynb)
+# Module
+- Package: The top-level container. It is a folder that groups related modules together to help organize code and avoid naming conflicts.
+- Module: A module is a **file** containing Python code that includes functions, variables, and other elements.
+- Function: A function is a block of code that performs a specific task.
+- Constant: Constants are variables whose values do not change during the program's execution.
+- Other Elements: May contain classes, global variables, or import statements.
+
+[Module material](https://github.com/mingfujacky/Lecture-Python/blob/main/2_python_middle/K_module.ipynb)
 
 # Package and Module
-![bg right:50% w:90% Package and module](https://i0.wp.com/blogs.virtualmaestro.in/wp-content/uploads/2020/04/dd756-screenshot2b2020-04-042bat2b10.27.082bpm.png?ssl=1)
+![bg right:70% w:100% Package and module](https://images.squarespace-cdn.com/content/v1/590eeff5b8a79b2147a783be/3a8a5a39-1cbb-43a5-82ad-f4c49da41daf/Picture+1.png?format=2500w)
 
+remark: the root is project name
