@@ -22,7 +22,7 @@ class Array:
         if size <= 0:
             raise ValueError(f"Invalid array size (must be positive): {size}")
         self._size = size
-        self._array = array.array(typecode, [0] * size)
+        self._array = array.array(typecode, [0] * size) # set deafult value 0
 
     def __len__(self):
         # return the number of elements in the array.
@@ -46,12 +46,18 @@ class Array:
 
 
 if __name__ == "__main__":
-    a = Array(5)
-    print(len(a))  # __len__
-    a[0] = 2  # __setitem__
-    print(a[0])  # __getitem__
-    print(a)
+    # test cases to validate the functions of module 
+    a = Array(5)  # _init__
+    print(len(a)) # __len__
+    a[0] = 2      # __setitem__
+    print(a[0])   # __getitem__
+    print(a)      # __repr__
 
-    b = Array(3, "f")
-    b[2] = 3.51  # __setitem__
+    b = Array(5, "f")
+    b[2] = 1.25
     print(b)
+    
+    # c = Array(-1, "l")  # error case of __init__
+    # foo = a[7]          # error case of __getitem__
+    # a[7] = 20           # error case of __setitem__
+

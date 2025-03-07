@@ -44,7 +44,7 @@ style: |
   }
   
   .blue-text {
-    color: blue;  
+    color: LightSkyBlue;  
   }
 
   .small-text {
@@ -59,19 +59,16 @@ style: |
 
 ![bg right:40% w:500 array memory](../Lecture-Data-Structure/restricted/array_memory_address.png)
 
----
 # Arrays
 - Key characteristics
   - It stores a collection of data
   - Its elements can be accessed by index
   - Elements don’t have to be accessed sequentially
 - Implementing arrays as a core language feature
-  - Arrays are allocated in memory as a single, uninterrupted block of memory with
-sequential locations.
-  - Arrays are restricted to storing data of the same type to quickly know the memory address of each element.
-  - [**Static Arrays**] The size of arrays (# of elements) must be decided when the array is created, and that size can’t be changed.
+  - Arrays are allocated in memory with sequential locations.
+  - Arrays are restricted to storing data of the same type.
+  - <span class="blue-text">Static Arrays: </span> The size of arrays (# of elements) must be decided when the array is created, and that size can’t be changed.
 
----
 # Arrays in Python
 
 Class          |Fixed Size|Fixed Type|Implementation
@@ -82,13 +79,12 @@ Class          |Fixed Size|Fixed Type|Implementation
 
 [Code: array-like in Python](../Lecture-Data-Structure/code/ch02a_python_array_like.py)
 
----
-### Implement Arrays as a Core Language Feature
+# Implement Arrays as a Core Language Feature
   - allocated in continuous memory
   - restricted to storing data of the same type
   - size of arrays must be decided when the array is created
 
-### The core array class will have the following methods:
+# The core array class will have the following methods:
   - Initialize: create an array with a given size and type
   - Create: initiate an array
   - Get the value at a given index
@@ -97,8 +93,16 @@ Class          |Fixed Size|Fixed Type|Implementation
 
 [Code: core array](../Lecture-Data-Structure/code/ch02b_core_array.py)
 
----
+# Magic Method
+![bg right:70% w:60%](https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff69d1d4d-91ac-409a-baa2-ccd4c4aaab13_1700x2087.png)
 # Lab
-Use class Array to create an array object
-- size is 10
-- store 4 integers
+(1) Create a package structure
+my_package/
+|---- \_\_init\_\_.py
+|---- arrays/
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---- \_\_init\_\_.py
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---- core.py
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---- sorted_array.py
+|---- queue/
+
+(2) Write a main program to import core.py and use class Array to create an array object (codetype = l, size = 5), then store 4 integers
