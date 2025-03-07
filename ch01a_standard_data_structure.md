@@ -44,7 +44,7 @@ style: |
   }
   
   .blue-text {
-    color: blue;  
+    color: lightskyblue;  
   }
 
   .small-text {
