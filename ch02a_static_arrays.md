@@ -73,8 +73,8 @@ style: |
 
 Class          |Fixed Size|Fixed Type|Implementation
 ---------------|----------|-----------------|--------------
-**list**       |NO    |NO               |dynamic array like
-**array.array**|NO    |YES              |dynamic array like
+**list**       |NO    |NO               |not exactly an array
+**array.array**|NO    |YES              |dynamic array
 **Numpy.array**|YES   |YES              |static array
 
 [Code: array-like in Python](../Lecture-Data-Structure/code/ch02a_python_array_like.py)
@@ -86,7 +86,6 @@ Class          |Fixed Size|Fixed Type|Implementation
 
 # The core array class will have the following methods:
   - Initialize: create an array with a given size and type
-  - Create: initiate an array
   - Get the value at a given index
   - Get the number of elements in the array
   - Display the array
@@ -95,6 +94,14 @@ Class          |Fixed Size|Fixed Type|Implementation
 
 # Magic Method
 ![bg right:70% w:60%](https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff69d1d4d-91ac-409a-baa2-ccd4c4aaab13_1700x2087.png)
+
+# \_\_str\_\_() vs \_\_repr\_\_()
+Method | Purpose | When Used?
+-------|---------|-----------
+\_\_str\_\_()|Readable, user-friendly representation|print(obj), str(obj)
+\_\_repr\_\_()|Developer-friendly, unambiguous representation (often used for debugging)| repr(obj), or print(obj) if \_\_str\_\_() is missing
+
+
 # Lab
 (1) Create a package structure
 my_package/
@@ -103,6 +110,6 @@ my_package/
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---- \_\_init\_\_.py
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---- core.py
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---- sorted_array.py
-|---- queue/
+|---- queues/
 
 (2) Write a main program to import core.py and use class Array to create an array object (codetype = l, size = 5), then store 4 integers

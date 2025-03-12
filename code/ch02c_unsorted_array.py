@@ -1,16 +1,23 @@
 import sys
 
-sys.path.append(
+'''sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/.venv/lib/python3.13/site-packages"
 )
+'''
+'''
 sys.path.append(
-    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/code"
+    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package"
 )
+'''
+
+from pathlib import Path
+package_path = Path.cwd() / "my_package"
+sys.path.append(str(package_path))
+
 from arrays.core import Array
 
-
 class UnsortedArray:
-    """Return a new unsorted array whose items are restricted by typecode, and that can contain at most `max_size` elements.
+    """Return a new unsorted array whose items are restricted by typecode, and that can contain at most `max_size` elements. The unsorted array is left adjusted
 
     Parameters:
     max_size (int): The maximum number of elements the array can hold.
