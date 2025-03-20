@@ -4,7 +4,7 @@ sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/.venv/lib/python3.13/site-packages"
 )
 sys.path.append(
-    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/code"
+    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package"
 )
 from arrays.core import Array
 
@@ -18,7 +18,7 @@ class SortedArray:
         self._array = Array(max_size, typecode)
         self._max_size = max_size
         # The actual number of elements stored in the array
-        self._size = 0
+        self._size = 0  # it is also the index of the next element to be inserted
 
     def __len__(self):
         return self._size
@@ -29,7 +29,12 @@ class SortedArray:
         return self._array[index]
 
     def __repr__(self):
-        return f"SortedArray({repr(self._array._array[:self._size])})"
+        return f"SortedArray({repr(self._array)}" 
+        # output: SortedArray(array('l', [1, 2, 4, 5, 6, 0, 0, 0, 0])
+        # return f"SortedArray({repr(self._array._array[:self._size])})"
+        # output: SortedArray(array('l', [1, 2, 4, 5, 6]))
+        return f"SortedArray({repr(self._array[:self._size])})"
+        # output: Error not support 'slice'
 
     def max_size(self):
         return self._max_size
@@ -39,8 +44,7 @@ class SortedArray:
         Functionality:
             Inserts the given value into the sorted array while maintaining the sorted order.
             If the array is already full, raises a ValueError.
-            Otherwise, shifts elements to the right to make room for the new value and inserts
-            it in the correct position to keep the array sorted.
+            Otherwise, shifts elements to the right to make room for the new value and inserts it in the correct position to keep the array sorted.
         """
 
         if self._size >= self._max_size:
@@ -63,8 +67,7 @@ class SortedArray:
         """
         Functionality:
             Performs a linear search over the values in the sorted array.
-            Since the array is sorted, we can stop searching once we pass the point
-            where the target value would be located.
+            Since the array is sorted, we can stop searching once we pass the point where the target value would be located.
             Returns the index of the target value if found, otherwise returns None.
         """
 
@@ -163,8 +166,7 @@ if __name__ == "__main__":
     a.delete(4)
     print(f"{a = }")
 
-    # linear search
-    print("Linear search:")
+    # Searching
     a = SortedArray(9)
     a.insert(1)
     a.insert(2)
@@ -176,7 +178,9 @@ if __name__ == "__main__":
     a.insert(9)
     a.insert(10)
     print(f"{a = }")
+    print("Linear search:")
     index = a.linear_search(8)
     print(f"{index = }")
-    index = a.binary_search(10)
+    print("Binary search:")
+    index = a.binary_search(6)
     print(f"{index = }")

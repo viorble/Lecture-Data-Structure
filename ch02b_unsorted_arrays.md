@@ -81,7 +81,6 @@ Class UnsortedArray:
 
 [Code: unsorted array](../Lecture-Data-Structure/code/ch02c_unsorted_array.py)
 
-# Lab
-(1) Add a method in unsorted_array class to return max value
-(2) Add a method in unsorted_array class to return min value
-(3) Add a method in unsorted_array class to clear array
+# Homework
+DSA HW (C): due 2025/03/28 23:59
+DSA HW (D): due 2025/04/04 23:59
