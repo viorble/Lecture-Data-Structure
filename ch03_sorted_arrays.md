@@ -145,7 +145,7 @@ Step 4 :  Now we pick the next element which is 3, since 3 is less than 4, we in
 # Insertion Sort (Flow)
 ![bg right:60% w:90%](files/image/insertion_sort_flow.png)
 
-# Insertion Sort (Flow)
+# Insertion Sort (Pseudo Code)
 Step 1 − If it is the first element, it is already sorted. return 1;
 Step 2 − Pick next element
 Step 3 − Compare with all elements in the sorted sub-list
@@ -153,7 +153,7 @@ Step 4 − Shift all the elements in the sorted sub-list that is greater than th
 Step 5 − Insert the value
 Step 6 − Repeat until list is sorted
 
-# Insertion Sort (Pseudo Code)
+# Insertion Sort (Algorithm)
 ```python
 Algorithm: Insertion-Sort(A), zero-based
 for i = 1 to A.length - 1
@@ -164,5 +164,5 @@ for i = 1 to A.length - 1
       j = j -1
    A[j + 1] = key
 ```
-# Lab
-Implement the traverse method for sorted arrays. Then use it to print all the elements in the array in an ascending sequence.
+# Homework
+DSA HW (E): due 2025/04/18 23:59

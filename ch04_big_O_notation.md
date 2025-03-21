@@ -55,8 +55,8 @@ style: |
 ![bg right:50% w:600 Check algorithm goodness](../Lecture-Data-Structure/restricted/check_algorithm_goodness.png)
 
 # Measure Terms of Algorithm Performance
-- Time
-- Memory space
+- Time complexity
+- Memory space complexity
 
 # Measure Methods of Algorithm Performance
 **[Profiling 效能分析]** Implement the algorithm and run code on various **inputs** to measure time and memory it takes. <br>
@@ -67,7 +67,7 @@ run algorithm
 end time = time()
 elapsed = end time− start time
 ```
-**[Asymptotic analysis 漸近分析]** Find mathematical formulas that describe how an algorithm behaves as a function of its **input**.
+**[Asymptotic analysis 漸近分析]** Find mathematical formulas that describe how an algorithm behaves **as a function of its <u>input</u>**.
 ![bg right:40% w:1000 big O](https://cdn.hashnode.com/res/hashnode/image/upload/v1657289969914/jdsAxrEyZ.JPG?auto=compress,format&format=webp)
 
 # Calculate Operations of an Algorithm
@@ -81,23 +81,26 @@ def add_up_to(n):
 ```
 ```python
 def add_up_to(n):
-    return (1 + n) * n / 2   # 1 op
+    return (1 + n) * n / 2   # 3 op
 # total:  3 ops, regardless of the size of n
 ```
 
 # Big-O Definition
-- Big O notation is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity.
+- Big O notation is a mathematical notation that describes the behavior of a function when the argument tends towards a particular value or infinity.
 - In computer science, big O notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows.
 - 2n + 2 = O(n)
 - 3 = O(1)
 
 # Four Rules to Find Big O Complexity of an Algorithm
 - Rule 1: Worst case
-- Rule 2: Remove the leading constants
-- Rule 3: Different terms for inputs
+- Rule 2: Remove the constants
+- Rule 3: Different inputs different variables
+
 ```python
-for i in range(n):         # Loop 1 depends on n
-    for j in range(m):     # Loop 2 depends on m
+n = 10  # 1 op
+m = 5   # 1 op
+for i in range(n):         # Loop 1 n ops
+    for j in range(m):     # Loop 2 m ops
         print(i, j)
 # The algorithm is  O(n * m) , as n and m represent independent inputs that multiply together.        
 ```
@@ -105,6 +108,7 @@ for i in range(n):         # Loop 1 depends on n
 
 **[Question]** Find Big O complexity of an algorithm with the time complexity 20n³ + 5n + 7
 **[Answer]** Using the rules, this can be simplified to O(n³)
+https://dev.to/coderjay06/four-rules-for-big-o-1915
 
 # The Big O of Linear Search
 ```python
