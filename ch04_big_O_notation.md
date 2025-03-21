@@ -29,7 +29,7 @@ style: |
     gap: 1rem;
   }
   .middle-grid img {
-    width: 75%;
+    width: 60%;
   }
   .grid {
     display: grid;
@@ -85,11 +85,32 @@ def add_up_to(n):
 # total:  3 ops, regardless of the size of n
 ```
 
+# Big-O Classify Growth Rate
+- Big-O notation is used to **classify** algorithms according to how their <u>run time</u> or <u>space requirements</u> grow as the input size grows.
+![bg right:60% w:90%](restricted/big_O_growth_rate.png)
+
 # Big-O Definition
-- Big O notation is a mathematical notation that describes the behavior of a function when the argument tends towards a particular value or infinity.
-- In computer science, big O notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows.
-- 2n + 2 = O(n)
-- 3 = O(1)
+- f(n): function of algorithm's running time, n is the size of input
+- We can find two linear functions (n and n/2) as a pair, which bounds f(n), when n > 3
+- Define O(n) is a class of functions which grow as fast as straight lines, like n, 10n, n/10
+- Since n, n/2 belongs to O(n), we write f(n)=O(n) that means f(n) belongs to O(n) class
+<div class="middle-grid">
+    <img src="restricted/fn_equal_on.png">
+    <img src="restricted/common_growth_function.png">
+</div>
+
+# Big-O Arithmetic
+Based on the definition of Big-O notation, f(n) = O(n), we do not care which straight line pair can bound f, as long as there is one pair when n is large enough.
+<div class="middle-grid">
+    <img src="restricted/y_eaual_n.png">
+    <img src="restricted/line_3n_plus_5.png">
+</div>
+
+# Asymptotically Equivalent
+- For asymptotic analysis, two lines are considered asymptotically equivalent
+    - Two functions f(n) = n and g(n) = 3n are considered equivalent
+    - Their growth is of the same order of magnitude (同一個量級).
+- When comparing two algorithms, we compare their order of magnitude in terms of their Big-O complexity respectively.
 
 # Four Rules to Find Big O Complexity of an Algorithm
 - Rule 1: Worst case
