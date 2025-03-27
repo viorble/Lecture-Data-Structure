@@ -1,11 +1,3 @@
-import sys
-
-sys.path.append(
-    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/.venv/lib/python3.13/site-packages"
-)
-sys.path.append(
-    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/code"
-)
 from arrays.core import Array
 
 
@@ -82,15 +74,3 @@ class UnsortedArray:
 
     def clear(self):
         self._size = 0
-
-
-a = UnsortedArray(5)
-a.insert(1)
-a.insert(-1)
-a.insert(3)
-a.insert(0)
-print(a)
-print(a.max_min())
-a.clear()
-print(f"max_size:{a.max_size()}, current length: {len(a)}")
-print(a)

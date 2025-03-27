@@ -1,11 +1,3 @@
-import sys
-
-sys.path.append(
-    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/.venv/lib/python3.13/site-packages"
-)
-sys.path.append(
-    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package"
-)
 from arrays.core import Array
 
 
@@ -85,42 +77,3 @@ class DynamicArray:
         # Check if we should shrink the array
         if self._capacity > 1 and self._size <= self._capacity / 4:
             self._halve_size()
-
-
-# test dynamic array
-if __name__ == "__main__":
-
-    # initialization method
-    a = DynamicArray()
-    a.insert(1)
-    a.insert(2)
-    a.insert(4)
-    a.insert(5)
-    a.insert(6)
-    print(f"Init: capacity:{a._capacity}, current length: {len(a)}")
-    print(f"{a = }")
-
-    # insert value 3
-    print("Insert:")
-    a.insert(3)
-    print(f"{a = }")
-
-    # delete value 4
-    print("Delete:")
-    a.delete(4)
-    print(f"{a = }")
-
-    # find
-    print("Find:")
-    print("index", a.find(3))
-
-    # delete
-    print(f"capacity:{a._capacity}, current length: {len(a)}")
-    print(a)
-    a.delete(3)
-    a.delete(2)
-    print(f"capacity:{a._capacity}, current length: {len(a)}")
-    print(a)
-    a.delete(1)
-    print(f"capacity:{a._capacity}, current length: {len(a)}")
-    print(a)

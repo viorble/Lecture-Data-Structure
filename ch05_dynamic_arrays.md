@@ -25,7 +25,7 @@ style: |
   }
   
   .blue-text {
-    color: blue;  
+    color: lightskyblue;  
   }
 
   .small-text {
@@ -35,7 +35,7 @@ style: |
 # Chapter 5: Dynamic Arrays
 There are many examples of real-world applications where we need to be flexible and resize a data structure to meet an increasing demand.<br> 
 **Dynamic Arrays** enable the ability to adjust array size. 
-- Look at examples where flexibility gives us an advantage
+- Find strategies to give us the flexibility
 - Discuss how to implement dynamic arrays.
 
 # The Limitation of Static Arrays -> Fixed Size
@@ -56,13 +56,20 @@ Once a fixed size array full:
 # Dynamic Arrays
 - Dynamic arrays are implemented upon static arrays
 - That’s natural that we have to pay the cost of resizing the array from time to time.
-- The key to dynamic arrays is the strategy we use to <span class="blue-text">grow and shrink the underlying static arrays</span>.
+- The key to dynamic arrays is to find a strategy using to <span class="blue-text">grow and shrink the underlying static arrays</span>.
 
 
 # How to Grow Array Size
-- When should we resize the array?
+- When should we resize the array? 
+  - Already full
+  - Near full
 - How much larger should the new array be?
+  - Grow by one element
+  - Grow by X elements
+  - Double the size 
 - What should we do when we delete elements? Should we shrink the array as well?
+  - Halve on delete
+  - Smarter shrinking 
 
 # Approaches to Grow Array
 A comparison of the number of assignments for strategies to insert 100 elements into a
@@ -75,7 +82,7 @@ table {
 </style>
 Approach | # of expression |Total|Big O
 ---------|---------------------|--------|-----
-Increase size by 1| 1 + 2 + 3 + 4 + … + 98 + 99| 4851 | O(n**2)
+Increase size by 1| 1 + 2 + 3 + 4 + … + 98 + 99| 4950 | O(n**2)
 Increase size by 4| 1 + 5 + 9 + 13 +… + 93 + 97 |1225 | O(n**2)
 Double the size |1 + 2 + 4 + 8 + 16 + 32 + 64 |127 | O(n)
 
@@ -115,7 +122,6 @@ class DynamicArray():
     def __len__(self): pass
     def __getitem__(self, index): pass
     def __repr__(self): pass
-    def __iter__(self): pass
     def _is_full(self): pass
     def _double_size(self): pass
     def _halve_size(self): pass

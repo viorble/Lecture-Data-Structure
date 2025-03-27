@@ -63,44 +63,44 @@ style: |
 ```python
 from time import time
 start time = time()
-run algorithm
+# run algorithm here
 end time = time()
 elapsed = end time− start time
 ```
-**[Asymptotic analysis 漸近分析]** Find mathematical formulas that describe how an algorithm behaves **as a function of its <u>input</u>**.
-![bg right:40% w:1000 big O](https://cdn.hashnode.com/res/hashnode/image/upload/v1657289969914/jdsAxrEyZ.JPG?auto=compress,format&format=webp)
+**[Asymptotic Analysis 漸近分析]** Find mathematical formulas that describe how an algorithm behaves **as a function of its <u>input</u>**.
+![bg right:40% w:150% big O](https://cdn.hashnode.com/res/hashnode/image/upload/v1657289969914/jdsAxrEyZ.JPG?auto=compress,format&format=webp)
 
-# Calculate Operations of an Algorithm
+# Asymptotic Analysis - Calculate Operations of an Algorithm
 ```python
 def add_up_to(n):
     sum = 0                  # 1 op
     for i in range(1, n+1):  # n ops
         sum += i             # n ops 
     return sum               # 1 op
-# total: (2n + 2) ops
+# total: (2n + 2) ops  => O(n)
 ```
 ```python
 def add_up_to(n):
-    return (1 + n) * n / 2   # 3 op
-# total:  3 ops, regardless of the size of n
+    return (1 + n) * n / 2   # 1 op
+# total:  1 op, regardless of the size of n  => O(1)
 ```
 
 # Big-O Classify Growth Rate
-- Big-O notation is used to **classify** algorithms according to how their <u>run time</u> or <u>space requirements</u> grow as the input size grows.
-![bg right:60% w:90%](restricted/big_O_growth_rate.png)
+- Big-O notation is to **<u>classify</u>** algorithm's performance (complexity) grow as the <u>input size n</u> grows.
+![bg right:60% w:90%](restricted/search_big_O.png)
 
 # Big-O Definition
-- f(n): function of algorithm's running time, n is the size of input
-- We can find two linear functions (n and n/2) as a pair, which bounds f(n), when n > 3
-- Define O(n) is a class of functions which grow as fast as straight lines, like n, 10n, n/10
-- Since n, n/2 belongs to O(n), we write f(n)=O(n) that means f(n) belongs to O(n) class
+- f(n): a function of algorithm's running time, n is input size
+- Find two linear functions (n, n/2) as a pair to bound f(n), when n is large enough (eg. 3)
+- Define **O(n)** is a class of functions which grow as linear, like n, 10n, n/10
+- Since n, n/2 belongs to O(n), we write **<u>f(n)=O(n)</u>**, means f(n) belongs to O(n) class
 <div class="middle-grid">
     <img src="restricted/fn_equal_on.png">
     <img src="restricted/common_growth_function.png">
 </div>
 
-# Big-O Arithmetic
-Based on the definition of Big-O notation, f(n) = O(n), we do not care which straight line pair can bound f, as long as there is one pair when n is large enough.
+# Big-O Concept
+Based on the definition of Big-O notation, f(n) = O(n), we do not care which line pair can bound f, as long as there is one pair when n is large enough.
 <div class="middle-grid">
     <img src="restricted/y_eaual_n.png">
     <img src="restricted/line_3n_plus_5.png">
@@ -108,66 +108,81 @@ Based on the definition of Big-O notation, f(n) = O(n), we do not care which str
 
 # Asymptotically Equivalent
 - For asymptotic analysis, two lines are considered asymptotically equivalent
-    - Two functions f(n) = n and g(n) = 3n are considered equivalent
-    - Their growth is of the same order of magnitude (同一個量級).
-- When comparing two algorithms, we compare their order of magnitude in terms of their Big-O complexity respectively.
+    - Two functions f(n) = n and g(n) = 3n are considered equivalent because their growth is of the same order of magnitude (同一個量級)
+    - We say they belong to the same Big-O, O(n)
+- When comparing two algorithms, we compare their Big-O respectively.
 
-# Four Rules to Find Big O Complexity of an Algorithm
+# Four Rules to Find Big-O of an Algorithm
 - Rule 1: Worst case
 - Rule 2: Remove the constants
-- Rule 3: Different inputs different variables
+- Rule 3: Different inputs use different variables
 
 ```python
-n = 10  # 1 op
-m = 5   # 1 op
-for i in range(n):         # Loop 1 n ops
-    for j in range(m):     # Loop 2 m ops
-        print(i, j)
-# The algorithm is  O(n * m) , as n and m represent independent inputs that multiply together.        
+n = 9  # 1 op
+m = 9  # 1 op
+for i in range(n):         # Outer loop: n ops
+    for j in range(m):     # Inner loop: m ops
+        print(i, j)        # 1 op
+# The summary of ops is n * (1 + (2 * m)) + 2. 
+# The algorithm is  O(n + 2 * n * m + 2), n and m represent independent inputs. 
 ```
-- Rule 4: Drop nondominant terms
-
-**[Question]** Find Big O complexity of an algorithm with the time complexity 20n³ + 5n + 7
-**[Answer]** Using the rules, this can be simplified to O(n³)
+- Rule 4: Drop nondominant terms: We will get O(n * m)
+**[Question]** Find Big O of an algorithm having time complexity 20n³ + 5n + 7 => O(n³)
 https://dev.to/coderjay06/four-rules-for-big-o-1915
 
 # The Big O of Linear Search
 ```python
 def linear_search(self, target):
-    for i in range(self._size):      # repeat F(n) times
-        if self._array[i] == target: # cost: O(1)
-            return i                 # cost: O(1)
-        elif self._array[i] > target:# cost: O(1)
-            return None              # cost: O(1)
-    return None                      # cost: O(1)
+    for i in range(self._size):      # repeat n times
+        if self._array[i] == target: # 1 op
+            return i                 # 1 op
+        elif self._array[i] > target:# 1 op
+            return None              # 1 op
+    return None                      # 1 op
 ```
 - The formula for the running time of linear search is 
-  T(n) = F(n) * (2 * O(1)) + O(1) 
-       = F(n) * O(1) + O(1) 
-       = O(F(n))
-- F(n) = how many times the for loop is repeated = n
-- T(n) = O(n)
+  T(n) = n * (1 + 2 ) + 1 = 3n +1 = O(n)
 
 # The Big O of Binary Search
 ```python
 def binary_search(self, target):
-    left = 0                              # O(1)
-    right = self._size - 1                # O(1)
-    while left <= right:                  # G(n) iterations
-        mid_index = (left + right) // 2     # O(1)
-        mid_val = self._array[mid_index]    # O(1)
-        if mid_val == target:               # O(1)
-            return mid_index                # O(1)
-        elif mid_val > target:              # O(1)
-            right = mid_index - 1           # O(1)
+    left = 0                              # 1 op
+    right = self._size - 1                # 1 op
+    while left <= right:                  # repeat log2(n) times
+        mid_index = (left + right) // 2     # 1 op
+        mid_val = self._array[mid_index]    # 1 op
+        if mid_val == target:               # 1 op
+            return mid_index                # 1 op
+        elif mid_val > target:              # 1 op
+            right = mid_index - 1           # 1 op
         else
-            left = mid_index + 1            # O(1)
-    return None                          # O(1)
+            left = mid_index + 1            # 1 op
+    return None                             # 1 op
 ```
-- The formula for the running time of linear search is 
-  T(n) = 2 * O(1) + G(n) * 4 * O(1) + O(1) = O(G(n))
-- G(n) = how many times the for loop is repeated = logn
-- T(n) = O(logn)
+- The formula for the running time of binary search is
+  T(n) = 2 + log<sub>2</sub>n*(5) + 1 = log<sub>2</sub>5n + 3 = O(log<sub>2</sub>n)
 
-# Lab
-Using big-O notation and asymptotic analysis, derive the running time used for insert, delete, and traverse on sorted arrays. How do they compare to the same methods on unsorted arrays?
+# Another 2 Notation of Algorithm Complexity
+Case Type|Description|Notation
+---------|-----------|--------
+Worst Case|The maximum time the algorithm will take for any input. Analyzes the most unfavorable scenario. Usually the primary focus.|O(...)
+Average Case|The expected time over all possible inputs. More complex to analyze, as it requires averaging over all input cases.|&Theta;(...)
+Best Case|The minimum time the algorithm will take for any input. Represents the most favorable input scenario.|&Omega;(...)
+
+# Complexity of Linear Search Algorithm
+Case|Time Complexity
+----|---------------
+Best|&Omega;(1) (target is first item)
+Avg|&Theta;(n)
+Worst|O(n) (target is last or not found)
+
+# Recap
+- To evaluate performance of an algorithm, we can use asymptotic analysis, which means finding out a formula, expressed in big-O notation
+- Big-O notation is used to classify functions based on their asymptotic growth. We use these classes of functions to express how fast the running time or memory used by an algorithm grows as the input becomes larger.
+- Most common classes of functions
+  – O(1): **constant**, sum up 1 to n
+  – O(log<sub>2</sub>(n)): **logarithmic**, binary search
+  – O(n): **linear**, linear search
+  – O(n*log<sub>2</sub>(n)): **linearithmic**, priority queues
+  – O(n<sup>2</sup>): **quadratic**, all pairs in an array.
+  – O(2<sup>n</sup>): **exponential**, all subsets of an array

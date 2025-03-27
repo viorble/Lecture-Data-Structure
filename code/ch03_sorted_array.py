@@ -33,7 +33,7 @@ class SortedArray:
         # output: SortedArray(array('l', [1, 2, 4, 5, 6, 0, 0, 0, 0])
         # return f"SortedArray({repr(self._array._array[:self._size])})"
         # output: SortedArray(array('l', [1, 2, 4, 5, 6]))
-        return f"SortedArray({repr(self._array[:self._size])})"
+        # return f"SortedArray({repr(self._array[:self._size])})"
         # output: Error not support 'slice'
 
     def max_size(self):
