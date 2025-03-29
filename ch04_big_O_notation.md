@@ -160,7 +160,7 @@ def binary_search(self, target):
     return None                             # 1 op
 ```
 - The formula for the running time of binary search is
-  T(n) = 2 + log<sub>2</sub>n*(5) + 1 = log<sub>2</sub>5n + 3 = O(log<sub>2</sub>n)
+  T(n) = 2 + log<sub>2</sub>n*(6) + 1 = log<sub>2</sub>6n + 3 = O(log<sub>2</sub>n)
 
 # Another 2 Notation of Algorithm Complexity
 Case Type|Description|Notation
