@@ -17,7 +17,7 @@ style: |
     gap: 1rem;
   }
   .columns img {
-    width: 50%;
+    width: 100%;
   }
 
   .red-text {
@@ -77,4 +77,182 @@ A **linked list** is made of nodes
   - Last element of the list, not point to next node, point to Null
 - Each node only knows its successor
 
-# Implementing Singly Linked List
+# Requirements of Singly Linked List
+<div class="columns">
+    <img src="restricted/linked_list_implementation.png">
+    <img src="restricted/linked_list_node_implementation.png">
+</div>
+
+# Implement Node Class
+```python
+class Node:
+    def __init__(self, data, next_node = None):
+        self._data = data
+        self._next = next_node
+
+    def data(self): # Return the data of the current node
+        return self.?????
+
+    def next(self): # Return the successor of the current node
+        return self.?????
+
+    def has_next(self): # Check if the node has a successor
+        return self._next ?? ??? None
+
+    def append(self, next_node): # Append next_node to the current node or None to indicate no successor.
+        self._next = ?????????
+
+    def __str__(self):
+        return str(self.data())
+
+    def __repr__(self):
+        return f"Node(value: {repr(self._data)}, {id(self)}, next: {id(self._next) if self._next else None})"        
+```
+
+# Design Singly Linked List
+- Do not need specify a initial size
+- Do not need same data type
+- Insert
+  - Insert at the end of the list
+  - Insert in front
+- Search
+- Delete
+  - Delete by value
+  - Delete from the front
+
+# Design Singly Linked List - Insert
+<div class="columns">
+    <img src="restricted/linked_list_insert_at_the_end.png">
+    <img src="restricted/linked_list_insert_in_front.png">
+</div>
+
+# Implement Singly Linked List - Insert
+```python
+import sys
+sys.path.append(
+    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package")
+
+from linked_list.singly_linked_node import ????
+
+class SinglyLinkedList:
+    def __init__(self):
+        # _head: The head node of the list. Initialized to None.
+        self._head = None
+
+    def insert_to_back(self, data): # Append a node to the end of the list.
+        current = self._head
+            if current is None: # empty single linked list
+                self._head = ????(????)
+            else:
+                while current.????() is not None:
+                    current = current.next()
+                current.append(????(????))
+
+    def insert_in_front(self, data): # Add a node in front.
+        old_head = self.?????
+        self._head = Node(data, ????????)
+```
+
+# Implement Singly Linked List - Helper Function
+```python
+    def traverse(self, functor):
+        # Traverse the linked list to put data into a list after applying functor to each node's data.
+        current = self._head
+        result = []
+        while current is not None:
+            result.append(functor(current.data()))
+            current = current.next()
+        return result
+    def __len__(self):  # Return the length of the linked list.
+        return ???(self.traverse(lambda x: x))
+    def __repr__(self):
+        return f'SinglyLinkedList({"->".join(self.traverse(repr))})'
+    def __str__(self):
+        return "->".join(self.traverse(str))
+    def size(self):  # Return the length of the linked list.
+        size = 0
+        current = self.?????
+        while current is not None:
+            size += 1
+            current = current.????()
+        return ????
+    def is_empty(self):
+        return self._head is ????
+```
+
+# Design Singly Linked List - Search
+<div class="columns">
+    <img src="restricted/linked_list_search.png">
+</div>
+Time complexity O(n)
+
+# Implement Singly Linked List - Search
+```python
+    def search(self, target):
+        current = self._head
+        while current is not None:
+            if current.data() ?? target:
+                return ???????
+            current = current.????()
+        return ????
+```
+# Design Singly Linked List - Delete
+<div class="columns">
+    <img src="restricted/linked_list_delete_1.png">
+    <img src="restricted/linked_list_delete_2.png">
+</div>
+What is the time complexity?
+
+# Implement Singly Linked List - Delete
+```python
+    def delete(self, target):
+    # Delete the first node with the given data from the list.
+        current = self.?????
+        previous = ????
+        while current is not None:
+            if current.data() == target:
+                if previous is None:
+                    self._head = current.next()
+                else:
+                    ????????.append(???????.????())
+                return
+            previous = current
+            current = current.next()
+        raise ValueError(f"No element with value {target} was found.")
+        # If get here, no found
+```
+
+# Sorted Linked List
+<div class="columns">
+    <img src="restricted/linked_list_sorted.png">
+</div>
+
+Traverse the list to find the right place to insert the new value
+- Find the node after which the new value should be added
+- Update the links in the list to include the node that stores the new value
+
+# Implement Sorted Linked List
+```python
+def insert(self, new_data):
+        # Insert a new value into the sorted singly linked list.
+        current = self._head
+        previous = None
+        while current is not None:
+            if current.data() ?? new_data:
+                if previous is None:
+                    self._head = Node(new_data, ???????)    # Add the element at the beginning of the list
+                else:
+                    ????????.append(Node(new_data, ???????))    # General case
+                return
+            previous = ???????
+            current = current.????()
+        if previous is None:
+            self._head = Node(new_data)    # The list is ?????
+        else:
+            previous.append(Node(new_data, None))    # Add the element at the ??? of the list
+```
+
+
+# Homework
+- design function get(self, index) to get the data at the given index
+- design function delete_from_front(self) to delete the first node

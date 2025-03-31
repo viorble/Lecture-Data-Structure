@@ -20,7 +20,7 @@ class Node:
         return str(self.data())
 
     def __repr__(self):
-        return f"Node(value: {repr(self._data)}, {id(self)}, next: {id(self._next) if self._next else None})"
+        return f"Node(value:{self._data}, address:{id(self)}, next:{id(self._next) if self._next else None})"
 
     def data(self):
         return self._data
@@ -42,17 +42,12 @@ class Node:
 
 
 if __name__ == "__main__":
-    node1 = Node(1)
-    node2 = Node(2)
-    node3 = Node(3)
-    node1.append(node2)
-    node2.append(node3)
-    
-    print(repr(node1))
-    print(repr(node2))
-    print(repr(node3))
-    print(node1)
-
-    print(node1.data())
-    print(repr(node1.next()))
-    print(node1.has_next(), node3.has_next())
+    node_a = Node(1)
+    print(node_a)
+    print(repr(node_a))
+    node_b = Node(2)
+    node_a.append(node_b)
+    print(repr(node_a))
+    print(repr(node_b))
+    print(node_a.has_next())
+    print(node_b.has_next())
