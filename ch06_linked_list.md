@@ -251,8 +251,10 @@ def insert(self, new_data):
         else:
             previous.append(Node(new_data, None))    # Add the element at the ??? of the list
 ```
+# Doubly Linked List
 
 
 # Homework
 - design function get(self, index) to get the data at the given index
 - design function delete_from_front(self) to delete the first node
+- design function concatenate(self, sll) to concatenate two singly linked list
