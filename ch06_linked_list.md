@@ -38,7 +38,6 @@ style: |
   - Singly linked list
   - Sorted linked list
   - Doubly linked list
-  - Circular linked list
 
 # What is a Linked List
 A **linked list** is made of nodes
@@ -64,7 +63,7 @@ A **linked list** is made of nodes
   - find an element in linked list: O(n)
 ![bg right:50% w:90%](restricted/linked_list_vs_array.png)
 
-# Singly Linked List
+# Singly Linked List (SLL)
 <div class="columns">
     <img src="restricted/linked_list_singly.png">
     <img src="restricted/linked_list_singly_example.png">
@@ -251,10 +250,145 @@ def insert(self, new_data):
         else:
             previous.append(Node(new_data, None))    # Add the element at the ??? of the list
 ```
-# Doubly Linked List
+# Doubly Linked List (DLL)
+<div class="columns">
+    <img src="restricted/linked_list_singly_example_2.png">
+    <img src="restricted/linked_list_doubly_example.png">
+</div>
+
+- If we have a link to a single node of the list, we can reach any other node in the
+list, both before and after it.
+- Weak points
+  - Each node of a DLL takes up more space than SLL.
+  - Each node insertion or deletion action, we need update two links.
+
+# Doubly Linked Node
+<div class="columns">
+    <img src="restricted/double_linked_list_node.png">
+</div>
+
+# Implement Doubly Linked Node
+```python
+class DoublyLinkedNode:
+    def __init__(self, data):
+        self._data = data
+        self._next = None
+        self._prev = None
+
+    def __str__(self):
+        return str(self.data())
+
+    def __repr__(self):
+        return f"DoublyLinkedNode(value:{self._data}, address:{id(self)}, previous:{id(self._prev) if self._prev else None}, next:{id(self._next) if self._next else None})"
+
+    def data(self):
+        return self._data
+
+    def next(self):  # return the successor of the current node.
+        return self._next
+
+    def has_next(self):
+        return self._next is not None
+
+    def append(self, next_node):  # append a node to the current one
+        self._next = ?????????
+        if next_node is not None:
+            next_node.????? = self
+
+    def prev(self):  # return the predecessor of the current node.
+        return self._prev
+
+    def has_prev(self):  # check if the node has a predecessor
+        return self._prev is not None
+
+    def prepend(self, prev_node):  # prepend a node to the current one.
+        self.????? = prev_node
+        if prev_node is not None:
+            prev_node._next = ????
+```
+
+# Design Doubly Linked List - Insert
+<div class="columns">
+    <img src="restricted/double_linked_list_insert_at_front.png">
+    <img src="restricted/double_linked_list_insert_at_end.png">
+    <img src="restricted/double_linked_list_insert_in_middle.png">
+</div>
+
+# Implement Doubly Linked List - Insert
+```python
+import sys
+sys.path.append("/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package")
+from linked_list.doubly_linked_node import DoublyLinkedNode
+
+class DoublyLinkedList:
+    def __init__(self):
+        self._head = None
+        self._tail = None
+    
+    def insert_in_front(self, data):
+        if self._head is None: # empty list
+            self._tail = self._head = DoublyLinkedNode(data)
+        else:
+            old_head = self.?????
+            self._head = DoublyLinkedNode(data)
+            self._head.append(????????)
+
+    def insert_to_back(self, data):
+        if self._tail is None:
+            self._tail = self._head = DoublyLinkedNode(data)
+        else:
+            old_tail = self.?????
+            self._tail = DoublyLinkedNode(data)
+            self._tail.prepend(????????)
+
+    def insert_in_middle(self, data, index):
+        pass # Homework       
+```
+
+# Implement Doubly Linked List - Delete
+```python
+    def delete(self, target):
+        node = self.search(target)
+        if node is None:
+            raise ValueError(f"No element with value {target} was found")
+        if node.prev() is None:  # Delete node from front
+            self._head = node.next()
+            if self._head is None:  # only one element in the list
+                self.????? = None
+            else:
+                self._head.prepend(????)
+        elif node.next() is None:  # Delete node from back
+            self._tail = node.????()
+            self._tail.append(None)
+        else:
+            node.prev().append(node.next())
+    
+    def delete_from_front(self):
+        if self.is_empty():
+            raise ValueError("Delete on an empty list.")
+        data = self._head.data()
+        self._head = self._head.????()
+        if self._head is ????:
+            self._tail = None
+        else:
+            self._head.prepend(????)
+        return data
+    
+    def delete_from_back(self):
+        if self.is_empty():
+            raise ValueError("Delete on an empty list.")
+        data = self._tail.data()
+        self._tail = self._tail.????()
+        if self._tail is None:
+            self._head = None
+        else:
+            self._tail.??????(None)
+        return data
+```
 
 
 # Homework
-- design function get(self, index) to get the data at the given index
-- design function delete_from_front(self) to delete the first node
+- design function get(self, index) to get the data at the given index in singly linked list
+- design function delete_from_front(self) to delete the first node in singly linked list
 - design function concatenate(self, sll) to concatenate two singly linked list
+- design function insert_in_middle(self, data, index) to add a new item into doubly linked list
