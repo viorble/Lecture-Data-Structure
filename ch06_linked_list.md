@@ -388,7 +388,4 @@ class DoublyLinkedList:
 
 
 # Homework
-- design function get(self, index) to get the data at the given index in singly linked list
-- design function delete_from_front(self) to delete the first node in singly linked list
-- design function concatenate(self, sll) to concatenate two singly linked list
-- design function insert_in_middle(self, data, index) to add a new item into doubly linked list
+DSA HW (F)

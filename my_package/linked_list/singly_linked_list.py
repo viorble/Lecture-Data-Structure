@@ -88,7 +88,11 @@ class SinglyLinkedList:
         )  # If get here, no found
 
     def delete_from_front(self):  # Delete the first node
-        pass  # homework
+        if self.is_empty():
+            raise ValueError("Delete on an empty list.")
+        data = self._head.data()
+        self._head = self._head.next()
+        return data
 
 
 if __name__ == "__main__":
