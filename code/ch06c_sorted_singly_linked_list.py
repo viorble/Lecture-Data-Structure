@@ -3,8 +3,8 @@ import sys
 sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package")
 
-from linked_list.singly_linked_list import SinglyLinkedList
-from linked_list.singly_linked_node import Node
+from linked_lists.singly_linked_list import SinglyLinkedList
+from linked_lists.singly_linked_node import Node
 
 class SortedSinglyLinkedList(SinglyLinkedList):
     #A sorted version of the singly-linked lists.

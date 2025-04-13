@@ -5,7 +5,7 @@ sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package"
 )
 
-from linked_list.doubly_linked_node import DoublyLinkedNode
+from linked_lists.doubly_linked_node import DoublyLinkedNode
 
 
 class DoublyLinkedList:

@@ -5,7 +5,7 @@ sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package"
 )
 
-from linked_list.singly_linked_list import SinglyLinkedList
+from linked_lists.singly_linked_list import SinglyLinkedList
 
 class Stack:
     # A class modeling the stack container.

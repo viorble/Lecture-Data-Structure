@@ -4,7 +4,7 @@ sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package"
 )
 
-from linked_list.singly_linked_node import Node
+from linked_lists.singly_linked_node import Node
 
 
 class SinglyLinkedList:
