@@ -104,62 +104,100 @@ class Queue:
         return self._data.?????????????????()
 ```
 
-# Implement Queue by Stack Array - Init and Helper
+# Implement Queue by Static Array - Init and Helper
 ```python
-def pop(self):
-    if self.is_empty():
-        raise ValueError("Cannot pop from an empty stack")
-    return self._data.?????????????????()
+def __init__(self, max_size):
+        # Creates a static array under list with max_size >= 2
+        if max_size <= 1:
+            raise ValueError(f'Invalid size (a queue must have at least two elements): {max_size}')
+        self._data = [None] * ????????
+        self._max_size = max_size
+        self._front = 0
+        self._rear = 0
+        self._size = 0
 
-def peek(self):
-    if self.is_empty():
-        raise ValueError("Cannot peek at an empty stack")
-    return self._data.?????.data()
+def __str__(self):
+        if self.is_empty():
+            return 'empty queue'
+        result = []
+        front = self._front
+        if front >= self._rear:
+            while front < self._max_size:
+                result.append(self._data[front])
+                front += 1
+            front = 0
+            while front < self._rear:
+                result.append(self._data[front])
+                front += 1
+        else:
+            while front < self._rear:
+                result.append(self._data[front])
+                front += 1        
+        return f"Queue {' -> '.join(map(str, result))}"
+```
+# Implement Queue by Static Array - Check Size
+```python
+def __len__(self):
+        return self.?????
+
+def is_empty(self):
+        return len(self) == ?
+
+def is_full(self):
+        return len(self) == self.?????????                
 ```
 
-# Theory vs. the Real World
-- Considering Big O
-  - Stack by SLL: O(1)
-  - Stack by Dynamic array: O(n), but if a large number of operations is performed, their amortized (攤銷的) cost can be considered O(1).
-- Considering implementation
-  - You shouldn’t implement your own library unless it’s absolutely necessary
-  - If the library is critical for your application and can become a bottleneck, you should profile it.
-  - You shouldn’t profile all your code though. Focus on the critical sections where optimization will improve efficiency the most.
-
-# Profiling Example
-- Class Stack in stack.py coded by SLL
-- Class StackArray in stack_dynamic_array.py coded by List to simulate dynamic array
-
-<div class="columns">
-    <img src="restricted/stack_profiling_1.png">
-    <img src="restricted/stack_profiling_2.png">
+# Implement Queue by Static Array - Enqueue
+<div class="middle-grid">
+    <img src="restricted/queue_static_array_enqueue1.png">
+    <img src="restricted/queue_static_array_enqueue2.png">
+    <img src="restricted/queue_static_array_enqueue3.png">
 </div>
 
-- Python provides an optimized, extremely efficient implementation for list. This
-code is usually written in C and compiled for use in Python
-- With linked lists, we must allocate a new node on each call to push and then
-destroy a Node object on each pop. Allocating the memory and creating the
-objects takes time.
+```python
+def enqueue(self, value):
+        if self.is_full():
+            raise ValueError('The queue is already full!')
+        self._data[self._rear] = value
+        self._rear = (self._rear ? 1) % self.?????????
+        self._size += 1
+```
 
-# Stack Application - Evaluating Expression
-- Infix notation: 3 + 2
-- Postfix notation: 3 2 +
-- In infix notation, 3 + 2 * 4 == 3 + (2 * 4) based on operator precedence, if we want to add 3 and 2 first, the formula will be (3 + 2) * 4
-- In postfix notation, we use 3 2 4 * + and 3 2 + 4 * respectively
-- 
-<div class="columns">
-    <img src="restricted/stack_postfix_1.png">
-    <img src="restricted/stack_postfix_2.png">
+# Implement Queue by Static Array - Dequeue
+<div class="middle-grid">
+    <img src="restricted/queue_static_array_dequeue1.png">
+    <img src="restricted/queue_static_array_dequeue2.png">
+    <img src="restricted/queue_static_array_dequeue3.png">
 </div>
+
+```python
+def dequeue(self):
+    if self.is_empty():
+        raise ValueError("Cannot dequeue from an empty queue")
+    value = self._data[self._front]
+    self._front = (self._front ? 1) % self.?????????
+    self._size -= 1
+    return f"{value} dequeued from the queue"
+```
+
+# What about dynamic arrays?
+- When we try to enqueue an element on a full queue, we can just allocate a new array with double size.
+- If we copy the array as it is over the new array, we will encounter a big problem: the rear and front pointers will no longer make sense  
+<div class="middle-grid">
+    <img src="restricted/queue_dynamic_array_enqueue1.png">
+    <img src="restricted/queue_dynamic_array_enqueue2.png">
+</div>
+This won’t be any slower than copying the elements in the same positions as they were, and it won’t affect the Big-O. But it will make the code more complicated.
 
 # Recap
-- A stack is a container that abides by the LIFO policy.
-- Stacks provide two operations: push and pop. No other way to insert or delete elements, and search is generally not allowed.
-- A stack can be implemented using either arrays or linked lists to store its elements.
-  - Using dynamic arrays, push and pop take O(n) time in the worst case, but O(1) amortized time (over a large number of operations).
-  - Using SLLs, push and pop take O(1) time in the worst case.
-- The amortized performance of the two implementations is close, and profiling can help you understand which of the two implementations is more efficient in a
-given programming language.
+- A queue is a container that adheres to the FIFO policy
+- Queues are widely used in computer science and programming, including messaging systems, networking, web servers, and operating systems
+- Queues provide two operations: enqueue and dequeue
+- A queue can be implemented using either arrays or doubly linked lists to store its
+elements.
+  - Using doubly linked lists, enqueue and dequeue take O(1) time in the worst case.
+  - Using static arrays, we can implement a circular queue, where the array is imagined as a circular container.
+  - Using dynamic arrays to implement queue is quite complicated and not very common.
 
 # Homework
-DSA HW (G)
+DSA HW (H): Implement queue using stacks

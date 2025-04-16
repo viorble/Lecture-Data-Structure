@@ -32,10 +32,7 @@ class Queue:
                 result.append(self._data[front])
                 front += 1        
 
-        return ' -> '.join(map(str, result))
-
-    def __repr__(self):
-        return f'Queue({str(self)})'
+        return f"Queue {' -> '.join(map(str, result))}"
 
     def is_empty(self):
         return len(self) == 0
@@ -67,7 +64,6 @@ if __name__ == "__main__":
     print(queue)
     print(queue.dequeue())
     print(queue)
-    print(repr(queue))
     queue.enqueue(4)
     print(queue)
     print(queue.dequeue())

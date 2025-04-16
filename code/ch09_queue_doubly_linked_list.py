@@ -34,7 +34,7 @@ if __name__ == "__main__":
     queue.enqueue(1)
     queue.enqueue(2)
     queue.enqueue(3)
-    print(queue)  # Output: [1, 2, 3]
-    print(queue.dequeue())  # Output: 1
-    print(queue)  # Output: [2, 3]
-    print(len(queue))  # Output: 2
+    print(queue)
+    print(queue.dequeue())
+    print(queue)
+    print(len(queue))
