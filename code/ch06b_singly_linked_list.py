@@ -99,3 +99,30 @@ if __name__ == "__main__":
     print("STR:", foo, "REPR:", repr(foo))
     print(len(foo), foo.size())
     print(foo.search(0))
+    # test empty list deletion
+    boo = SinglyLinkedList()
+    try:
+        boo.delete(0)
+    except ValueError as e:
+        print(e)
+    # test delete first node
+    boo = SinglyLinkedList()
+    boo.insert_to_back(1)
+    boo.insert_to_back(2)
+    boo.insert_to_back(3)
+    boo.delete(1)
+    print(boo)
+    # test delete last node
+    boo = SinglyLinkedList()
+    boo.insert_to_back(1)
+    boo.insert_to_back(2)
+    boo.insert_to_back(3)
+    boo.delete(3)
+    print(boo)
+    # test delete middle node
+    boo = SinglyLinkedList()
+    boo.insert_to_back(1)
+    boo.insert_to_back(2)
+    boo.insert_to_back(3)
+    boo.delete(2)
+    print(boo)

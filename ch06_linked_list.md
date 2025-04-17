@@ -33,7 +33,7 @@ style: |
   }
 ---
 # Chapter 6: Linked List
-- What linked list can do better than array
+- What is linked list any why it can do better than array
 - Types of linked list
   - Singly linked list
   - Sorted linked list
@@ -43,7 +43,7 @@ style: |
 A **linked list** is made of nodes
 - Each node contains a single value 
 - Each node also contains a link to the next node
-  - Because the nodes are not in contiguous areas of memory
+  - The nodes are not in contiguous areas of memory
   - Need an extra piece of data to store the memory location of the next node
 <div class="columns">
     <img src="restricted/linked_list.png">
@@ -66,7 +66,6 @@ A **linked list** is made of nodes
 # Singly Linked List (SLL)
 <div class="columns">
     <img src="restricted/linked_list_singly.png">
-    <img src="restricted/linked_list_singly_example.png">
 </div>
 
 - Head node
@@ -78,8 +77,8 @@ A **linked list** is made of nodes
 
 # Requirements of Singly Linked List
 <div class="columns">
-    <img src="restricted/linked_list_implementation.png">
     <img src="restricted/linked_list_node_implementation.png">
+    <img src="restricted/linked_list_implementation.png">
 </div>
 
 # Implement Node Class
@@ -106,6 +105,10 @@ class Node:
 
     def __repr__(self):
         return f"Node(value: {repr(self._data)}, {id(self)}, next: {id(self._next) if self._next else None})"        
+node1 = Node(1); node2 = Node(2, node1)
+print(repr(node1)); print(repr(node2))
+node3 = Node(3); node4 = Node(4); node3.append(node4)
+print(repr(node3)); print(repr(node4))
 ```
 
 # Design Singly Linked List
@@ -131,7 +134,7 @@ import sys
 sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package")
 
-from linked_list.singly_linked_node import ????
+from linked_lists.singly_linked_node import ????
 
 class SinglyLinkedList:
     def __init__(self):
@@ -140,12 +143,12 @@ class SinglyLinkedList:
 
     def insert_to_back(self, data): # Append a node to the end of the list.
         current = self._head
-            if current is None: # empty single linked list
-                self._head = ????(????)
-            else:
-                while current.????() is not None:
-                    current = current.next()
-                current.append(????(????))
+        if current is None: # empty single linked list
+            self._head = ????(????)
+        else:
+            while current.????() is not None:
+                current = current.next()
+            current.append(????(????))
 
     def insert_in_front(self, data): # Add a node in front.
         old_head = self.?????
@@ -200,7 +203,13 @@ Time complexity O(n)
     <img src="restricted/linked_list_delete_1.png">
     <img src="restricted/linked_list_delete_2.png">
 </div>
-What is the time complexity?
+
+- when we want to delete 7, how to do?
+- when we want to delete 9, we can not just search 9, why?
+- if we need delete the middle node, how to do
+- if we need delete the first node, how to do?
+- if we need delete the last node, how to do
+- What is the time complexity Big-O?
 
 # Implement Singly Linked List - Delete
 ```python
@@ -210,16 +219,18 @@ What is the time complexity?
         previous = ????
         while current is not None:
             if current.data() == target:
-                if previous is None:
+                if previous is None:  # delete the head of the list
                     self._head = current.next()
                 else:
-                    ????????.append(???????.????())
+                    ????????.append(???????.????()) # a node in the middle or at the end
                 return
             previous = current
             current = current.next()
         raise ValueError(f"No element with value {target} was found.")
-        # If get here, no found
+        # If get here, empty list or value not found
 ```
+Test case need test empty list, delete first node, delete last node, delete middle node
+
 
 # Sorted Linked List
 <div class="columns">
