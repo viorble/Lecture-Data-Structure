@@ -72,7 +72,7 @@ A **linked list** is made of nodes
   - First element of a linked list, no other node points to it
   - Use a variable point to the head node
 - Tail node
-  - Last element of the list, not point to next node, point to Null
+  - Last element of the list, not point to next node, point to Null (None)
 - Each node only knows its successor
 
 # Requirements of Singly Linked List
