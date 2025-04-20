@@ -1,4 +1,6 @@
-from arrays.core import Array
+import sys
+sys.path.append("/Users/liupeijia/Desktop/NCYU/113下/5. DSA/Lecture-Data-Structure-1")
+from my_package.arrays.core import Array
 
 
 class UnsortedArray:
@@ -74,3 +76,26 @@ class UnsortedArray:
 
     def clear(self):
         self._size = 0
+    def print_addresses(self):
+        print("記憶體地址狀態：")
+        for i, val in enumerate(self._array):
+            print(f"Index {i}: Value={val}, Address={id(val)}")
+            
+        
+
+# 測試 delete 是否會把後面元素往前移
+# ----------------- 測試區 -----------------
+arr = UnsortedArray(5)
+for x in [100, 200, 300, 400, 500]:
+    arr.insert(x)
+
+print("原始陣列:\n", arr)
+arr.print_addresses()
+print('sizeof:', len(arr))
+
+print("\n刪除 index 1（200）")
+arr.delete(1)
+
+print("\n刪除後陣列:\n", arr)
+arr.print_addresses()
+print('sizeof:', len(arr))

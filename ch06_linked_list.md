@@ -33,6 +33,7 @@ style: |
   }
 ---
 # Chapter 6: Linked List
+
 - What is linked list any why it can do better than array
 - Types of linked list
   - Singly linked list
@@ -40,32 +41,38 @@ style: |
   - Doubly linked list
 
 # What is a Linked List
+
 A **linked list** is made of nodes
-- Each node contains a single value 
+
+- Each node contains a single value
 - Each node also contains a link to the next node
   - The nodes are not in contiguous areas of memory
   - Need an extra piece of data to store the memory location of the next node
+
 <div class="columns">
-    <img src="restricted/linked_list.png">
-    <img src="restricted/linked_list_node.png">
+    <img src="add_image/ch6/link list.png">
+    <img src="add_image/ch6/link list node.png">
 </div>
 
-#  Linked List vs Array
-- Elements of array are stored in contiguous memory 
+# Linked List vs Array
+
+- Elements of array are stored in contiguous memory
 - Nodes of linked list are not stored contiguously. The location of each linked node must be saved.
 - A node in a linked node is a small data structure that stores a single value and a link to the next node.
-![bg right:50% w:90%](restricted/linked_list_vs_array.png)
+  ![bg right:50% w:90%](add_image/ch6/link%20list%20vs%20array.png)
 
 # Compare Linked List to Array
+
 - More flexibility: not need allocate space in advance and no data copying cost when add elements
 - Lack direct indexing
   - find an element in array: O(1)
   - find an element in linked list: O(n)
-![bg right:50% w:90%](restricted/linked_list_vs_array.png)
+    ![bg right:50% w:90%](add_image/ch6/link%20list%20vs%20array2.png)
 
 # Singly Linked List (SLL)
+
 <div class="columns">
-    <img src="restricted/linked_list_singly.png">
+    <img src="add_image/ch6/SLL.png">
 </div>
 
 - Head node
@@ -76,12 +83,14 @@ A **linked list** is made of nodes
 - Each node only knows its successor
 
 # Requirements of Singly Linked List
+
 <div class="columns">
-    <img src="restricted/linked_list_node_implementation.png">
-    <img src="restricted/linked_list_implementation.png">
+    <img src="add_image/ch6/Implementing SLL.png">
+    <img src="add_image/ch6/Implementing SLL_node.png">
 </div>
 
 # Implement Node Class
+
 ```python
 class Node:
     def __init__(self, data, next_node = None):
@@ -89,22 +98,22 @@ class Node:
         self._next = next_node
 
     def data(self): # Return the data of the current node
-        return self.?????
+        return self.????? #_data
 
     def next(self): # Return the successor of the current node
-        return self.?????
+        return self.????? #_next
 
     def has_next(self): # Check if the node has a successor
-        return self._next ?? ??? None
+        return self._next ?? ??? None # is not
 
     def append(self, next_node): # Append next_node to the current node or None to indicate no successor.
-        self._next = ?????????
+        self._next = ????????? # next_node
 
     def __str__(self):
         return str(self.data())
 
     def __repr__(self):
-        return f"Node(value: {repr(self._data)}, {id(self)}, next: {id(self._next) if self._next else None})"        
+        return f"Node(value: {repr(self._data)}, {id(self)}, next: {id(self._next) if self._next else None})"  
 node1 = Node(1); node2 = Node(2, node1)
 print(repr(node1)); print(repr(node2))
 node3 = Node(3); node4 = Node(4); node3.append(node4)
@@ -112,6 +121,7 @@ print(repr(node3)); print(repr(node4))
 ```
 
 # Design Singly Linked List
+
 - Do not need specify a initial size
 - Do not need same data type
 - Insert
@@ -123,18 +133,22 @@ print(repr(node3)); print(repr(node4))
   - Delete from the front
 
 # Design Singly Linked List - Insert
+
 <div class="columns">
-    <img src="restricted/linked_list_insert_at_the_end.png">
-    <img src="restricted/linked_list_insert_in_front.png">
+    <img src="add_image/ch6/link_list insert.png">
+    time = O(n)
+    <img src="add_image/ch6/link_list insert2.png">
+    time = O(1)
 </div>
 
 # Implement Singly Linked List - Insert
+
 ```python
 import sys
 sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package")
 
-from linked_lists.singly_linked_node import ????
+from linked_lists.singly_linked_node import ???? #Node
 
 class SinglyLinkedList:
     def __init__(self):
@@ -144,18 +158,19 @@ class SinglyLinkedList:
     def insert_to_back(self, data): # Append a node to the end of the list.
         current = self._head
         if current is None: # empty single linked list
-            self._head = ????(????)
+            self._head = ????(????) #Node(data)
         else:
-            while current.????() is not None:
+            while current.????() is not None: #next
                 current = current.next()
-            current.append(????(????))
+            current.append(????(????)) #Node(data)
 
     def insert_in_front(self, data): # Add a node in front.
-        old_head = self.?????
-        self._head = Node(data, ????????)
+        old_head = self.????? #_head
+        self._head = Node(data, ????????) # old_head
 ```
 
 # Implement Singly Linked List - Helper Function
+
 ```python
     def traverse(self, functor):
         # Traverse the linked list to put data into a list after applying functor to each node's data.
@@ -166,62 +181,79 @@ class SinglyLinkedList:
             current = current.next()
         return result
     def __len__(self):  # Return the length of the linked list.
-        return ???(self.traverse(lambda x: x))
+        return ???(self.traverse(lambda x: x)) # len
     def __repr__(self):
         return f'SinglyLinkedList({"->".join(self.traverse(repr))})'
     def __str__(self):
         return "->".join(self.traverse(str))
     def size(self):  # Return the length of the linked list.
         size = 0
-        current = self.?????
+        current = self.????? # _size
         while current is not None:
             size += 1
-            current = current.????()
-        return ????
+            current = current.????() #next
+        return ???? # size
     def is_empty(self):
-        return self._head is ????
+        return self._head is ???? # None
 ```
 
 # Design Singly Linked List - Search
+
 <div class="columns">
-    <img src="restricted/linked_list_search.png">
+    <img src="add_image/ch6/search.png">
 </div>
 Time complexity O(n)
 
 # Implement Singly Linked List - Search
+
 ```python
     def search(self, target):
         current = self._head
         while current is not None:
-            if current.data() ?? target:
-                return ???????
-            current = current.????()
-        return ????
+            if current.data() ?? target: # ==
+                return ??????? # current
+            current = current.????() # next
+        return ???? # None
 ```
+
 # Design Singly Linked List - Delete
+
 <div class="columns">
-    <img src="restricted/linked_list_delete_1.png">
-    <img src="restricted/linked_list_delete_2.png">
+    <img src="add_image/ch6/delete_1.png">
+    <img src="add_image/ch6/delete_2.png">
 </div>
 
 - when we want to delete 7, how to do?
+  - 讓node(6)的.next指向node(7)的.next
+    6.next = 7.next
 - when we want to delete 9, we can not just search 9, why?
+  - 需要知道 node(9)的前一個節點才能刪除他
 - if we need delete the middle node, how to do
+  * 先從 head 開始走
+  * 每次記住 `current` 和 `previous`
+  * 找到 `current.data == target` 的那個節點
+  * 然後 `previous.next = current.next`
 - if we need delete the first node, how to do?
+  - self._head = self._head.next
 - if we need delete the last node, how to do
+  * 從 head 開始遍歷，直到 `current.next.next == None`
+  * 此時 `current.next` 就是最後一個節點
+  * 把 `current.next = None`
 - What is the time complexity Big-O?
+  - O(n)
 
 # Implement Singly Linked List - Delete
+
 ```python
     def delete(self, target):
     # Delete the first node with the given data from the list.
-        current = self.?????
-        previous = ????
+        current = self.????? # _head
+        previous = ????  # None
         while current is not None:
             if current.data() == target:
                 if previous is None:  # delete the head of the list
                     self._head = current.next()
-                else:
+                else: # previous, current.next
                     ????????.append(???????.????()) # a node in the middle or at the end
                 return
             previous = current
@@ -229,56 +261,63 @@ Time complexity O(n)
         raise ValueError(f"No element with value {target} was found.")
         # If get here, empty list or value not found
 ```
+
 Test case need test empty list, delete first node, delete last node, delete middle node
 
-
 # Sorted Linked List
+
 <div class="columns">
-    <img src="restricted/linked_list_sorted.png">
+    <img src="add_image/ch6/linked_list_sorted.png">
 </div>
 
 Traverse the list to find the right place to insert the new value
+
 - Find the node after which the new value should be added
 - Update the links in the list to include the node that stores the new value
 
 # Implement Sorted Linked List
+
 ```python
 def insert(self, new_data):
         # Insert a new value into the sorted singly linked list.
         current = self._head
         previous = None
         while current is not None:
-            if current.data() ?? new_data:
+            if current.data() ?? new_data: # >=
                 if previous is None:
-                    self._head = Node(new_data, ???????)    # Add the element at the beginning of the list
-                else:
+                    self._head = Node(new_data, ???????) # current   # Add the element at the beginning of the list
+                else: # previous , current
                     ????????.append(Node(new_data, ???????))    # General case
                 return
-            previous = ???????
-            current = current.????()
+            previous = ??????? # current
+            current = current.????() # next
         if previous is None:
-            self._head = Node(new_data)    # The list is ?????
+            self._head = Node(new_data)    # The list is ????? # empty
         else:
-            previous.append(Node(new_data, None))    # Add the element at the ??? of the list
+            previous.append(Node(new_data, None))    # Add the element at the ??? of the list # end
 ```
+
 # Doubly Linked List (DLL)
+
 <div class="columns">
     <img src="restricted/linked_list_singly_example_2.png">
     <img src="restricted/linked_list_doubly_example.png">
 </div>
 
 - If we have a link to a single node of the list, we can reach any other node in the
-list, both before and after it.
+  list, both before and after it.
 - Weak points
   - Each node of a DLL takes up more space than SLL.
   - Each node insertion or deletion action, we need update two links.
 
 # Doubly Linked Node
+
 <div class="columns">
     <img src="restricted/double_linked_list_node.png">
 </div>
 
 # Implement Doubly Linked Node
+
 ```python
 class DoublyLinkedNode:
     def __init__(self, data):
@@ -319,6 +358,7 @@ class DoublyLinkedNode:
 ```
 
 # Design Doubly Linked List - Insert
+
 <div class="columns">
     <img src="restricted/double_linked_list_insert_at_front.png">
     <img src="restricted/double_linked_list_insert_at_end.png">
@@ -326,6 +366,7 @@ class DoublyLinkedNode:
 </div>
 
 # Implement Doubly Linked List - Insert
+
 ```python
 import sys
 sys.path.append("/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package")
@@ -335,7 +376,7 @@ class DoublyLinkedList:
     def __init__(self):
         self._head = None
         self._tail = None
-    
+  
     def insert_in_front(self, data):
         if self._head is None: # empty list
             self._tail = self._head = DoublyLinkedNode(data)
@@ -353,10 +394,11 @@ class DoublyLinkedList:
             self._tail.prepend(????????)
 
     def insert_in_middle(self, data, index):
-        pass # Homework       
+        pass # Homework   
 ```
 
 # Implement Doubly Linked List - Delete
+
 ```python
     def delete(self, target):
         node = self.search(target)
@@ -373,7 +415,7 @@ class DoublyLinkedList:
             self._tail.append(None)
         else:
             node.prev().append(node.next())
-    
+  
     def delete_from_front(self):
         if self.is_empty():
             raise ValueError("Delete on an empty list.")
@@ -384,7 +426,7 @@ class DoublyLinkedList:
         else:
             self._head.prepend(????)
         return data
-    
+  
     def delete_from_back(self):
         if self.is_empty():
             raise ValueError("Delete on an empty list.")
@@ -397,6 +439,6 @@ class DoublyLinkedList:
         return data
 ```
 
-
 # Homework
+
 DSA HW (F)

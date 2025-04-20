@@ -47,6 +47,7 @@ if __name__ == "__main__":
     node3 = Node(3)
     node1.append(node2)
     node2.append(node3)
+    print(str(node1))
     print(repr(node1))
     print(repr(node2))
     print(repr(node3))
