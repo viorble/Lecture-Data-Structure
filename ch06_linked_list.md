@@ -267,8 +267,7 @@ def insert(self, new_data):
     <img src="restricted/linked_list_doubly_example.png">
 </div>
 
-- If we have a link to a single node of the list, we can reach any other node in the
-list, both before and after it.
+- If we have two links in a single node of the list, we can reach any other node in the list, both before and after it.
 - Weak points
   - Each node of a DLL takes up more space than SLL.
   - Each node insertion or deletion action, we need update two links.
