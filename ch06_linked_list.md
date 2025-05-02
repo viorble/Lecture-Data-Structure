@@ -169,18 +169,18 @@ class SinglyLinkedList:
         self._head = Node(data, ????????) # old_head
 ```
 
-# Implement Singly Linked List - Helper Function
+# Implement Singly Linked List - Helper Functio
 
-```python
     def traverse(self, functor):
-        # Traverse the linked list to put data into a list after applying functor to each node's data.
+
+    # Traverse the linked list to put data into a list after applying functor to each node's data.
         current = self._head
         result = []
         while current is not None:
             result.append(functor(current.data()))
             current = current.next()
         return result
-    def __len__(self):  # Return the length of the linked list.
+    def__len__(self):  # Return the length of the linked list.
         return ???(self.traverse(lambda x: x)) # len
     def __repr__(self):
         return f'SinglyLinkedList({"->".join(self.traverse(repr))})'
@@ -188,14 +188,13 @@ class SinglyLinkedList:
         return "->".join(self.traverse(str))
     def size(self):  # Return the length of the linked list.
         size = 0
-        current = self.????? # _size
+        current = self.????? # _head
         while current is not None:
             size += 1
             current = current.????() #next
         return ???? # size
     def is_empty(self):
         return self._head is ???? # None
-```
 
 # Design Singly Linked List - Search
 
@@ -284,24 +283,24 @@ def insert(self, new_data):
         previous = None
         while current is not None:
             if current.data() ?? new_data: # >=
-                if previous is None:
+                if previous is None: #current is head
                     self._head = Node(new_data, ???????) # current   # Add the element at the beginning of the list
-                else: # previous , current
-                    ????????.append(Node(new_data, ???????))    # General case
+                else: # General case, previous has node
+                    ????????.append(Node(new_data, ???????))    # previous , current
                 return
             previous = ??????? # current
             current = current.????() # next
         if previous is None:
-            self._head = Node(new_data)    # The list is ????? # empty
+            self._head = Node(new_data)    # The list is ?????（empty）
         else:
-            previous.append(Node(new_data, None))    # Add the element at the ??? of the list # end
+            previous.append(Node(new_data, None))    # Add the element at the ???（end) of the list 
 ```
 
 # Doubly Linked List (DLL)
 
 <div class="columns">
-    <img src="restricted/linked_list_singly_example_2.png">
-    <img src="restricted/linked_list_doubly_example.png">
+    <img src="add_image/ch6/linked_list_doubly_example.png">
+    <img src="add_image/ch6/linked_list_doubly_example1.png">
 </div>
 
 - If we have a link to a single node of the list, we can reach any other node in the
@@ -313,8 +312,8 @@ def insert(self, new_data):
 # Doubly Linked Node
 
 <div class="columns">
-    <img src="restricted/double_linked_list_node.png">
 </div>
+    <img src="add_image/ch6/double_linked_list_node.png">
 
 # Implement Doubly Linked Node
 
@@ -341,9 +340,9 @@ class DoublyLinkedNode:
         return self._next is not None
 
     def append(self, next_node):  # append a node to the current one
-        self._next = ?????????
+        self._next = ????????? #next_node
         if next_node is not None:
-            next_node.????? = self
+            next_node.????? = self #_prev
 
     def prev(self):  # return the predecessor of the current node.
         return self._prev
@@ -352,17 +351,17 @@ class DoublyLinkedNode:
         return self._prev is not None
 
     def prepend(self, prev_node):  # prepend a node to the current one.
-        self.????? = prev_node
+        self.????? = prev_node #_prev
         if prev_node is not None:
-            prev_node._next = ????
+            prev_node._next = ???? #self
 ```
 
 # Design Doubly Linked List - Insert
 
 <div class="columns">
-    <img src="restricted/double_linked_list_insert_at_front.png">
-    <img src="restricted/double_linked_list_insert_at_end.png">
-    <img src="restricted/double_linked_list_insert_in_middle.png">
+    <img src="add_image/ch6/double_linked_list_insert_at_front.png">
+    <img src="add_image/ch6/double_linked_list_insert_at_end.png">
+    <img src="add_image/ch6/double_linked_list_insert_in_middle.png">
 </div>
 
 # Implement Doubly Linked List - Insert
@@ -381,20 +380,47 @@ class DoublyLinkedList:
         if self._head is None: # empty list
             self._tail = self._head = DoublyLinkedNode(data)
         else:
-            old_head = self.?????
+            old_head = self.????? #_head
             self._head = DoublyLinkedNode(data)
-            self._head.append(????????)
+            self._head.append(????????) #old_head
 
     def insert_to_back(self, data):
         if self._tail is None:
             self._tail = self._head = DoublyLinkedNode(data)
         else:
-            old_tail = self.?????
+            old_tail = self.????? #_tail
             self._tail = DoublyLinkedNode(data)
-            self._tail.prepend(????????)
+            self._tail.prepend(????????) #old_tail
 
     def insert_in_middle(self, data, index):
         pass # Homework   
+    if index < 0 or index > self.size():
+            raise IndexError("Index out of bounds")
+
+        if index == 0:
+            self.insert_in_front(data)
+            return
+
+        if index == self.size():
+            self.insert_to_back(data)
+            return
+
+        # Step 1: 找到 index 的節點
+        current = self._head
+        for _ in range(index):
+            current = current.next()
+
+        # Step 2: 建新節點、插入在 current 前
+        new_node = DoublyLinkedNode(data)
+        prev_node = current.prev()
+
+        new_node.append(current)     # new_node.next = current
+        new_node.prepend(prev_node)  # new_node.prev = prev_node
+
+        if prev_node:
+            prev_node.append(new_node)
+        if current:
+            current.prepend(new_node)
 ```
 
 # Implement Doubly Linked List - Delete
@@ -407,11 +433,11 @@ class DoublyLinkedList:
         if node.prev() is None:  # Delete node from front
             self._head = node.next()
             if self._head is None:  # only one element in the list
-                self.????? = None
+                self.????? = None #_tail
             else:
-                self._head.prepend(????)
+                self._head.prepend(????) #None
         elif node.next() is None:  # Delete node from back
-            self._tail = node.????()
+            self._tail = node.????() #prev
             self._tail.append(None)
         else:
             node.prev().append(node.next())
@@ -420,22 +446,22 @@ class DoublyLinkedList:
         if self.is_empty():
             raise ValueError("Delete on an empty list.")
         data = self._head.data()
-        self._head = self._head.????()
-        if self._head is ????:
+        self._head = self._head.????()#next
+        if self._head is ????:#None
             self._tail = None
         else:
-            self._head.prepend(????)
+            self._head.prepend(????)#None
         return data
   
     def delete_from_back(self):
         if self.is_empty():
             raise ValueError("Delete on an empty list.")
         data = self._tail.data()
-        self._tail = self._tail.????()
+        self._tail = self._tail.????()#prev
         if self._tail is None:
             self._head = None
         else:
-            self._tail.??????(None)
+            self._tail.??????(None)#append
         return data
 ```
 
