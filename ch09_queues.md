@@ -122,15 +122,15 @@ def __str__(self):
         result = []
         front = self._front
         if front >= self._rear:
-            while front < self._max_size:
+            while front ? self._max_size:
                 result.append(self._data[front])
                 front += 1
-            front = 0
-            while front < self._rear:
+            front = ?
+            while front ? self._rear:
                 result.append(self._data[front])
                 front += 1
         else:
-            while front < self._rear:
+            while front ? self._rear:
                 result.append(self._data[front])
                 front += 1        
         return f"Queue {' -> '.join(map(str, result))}"
