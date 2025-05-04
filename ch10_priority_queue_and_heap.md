@@ -162,7 +162,7 @@ class Heap:
 # Implement Heap Insert
 ```python
 def insert(self, element):
-    self._elements.append(element)
+    self._elements.??????(element)
     self._bubble_up(len(self._elements) - 1)
 
 def _bubble_up(self, index):
@@ -170,14 +170,14 @@ def _bubble_up(self, index):
     while index > 0:
         parent_index = self._parent_index(index)
         parent = self._elements[parent_index]
-        if self._has_higher_priority(element, parent):
+        if self._has_higher_priority(???????, parent):
         # There is a violation of the heap’s property, nad we need to swap the new element with its parent
-            self._elements[index] = parent
+            self._elements[index] = ?????
             index = parent_index
         else:
         # The new element and its parent don’t violate the heap’s properties, so we have found the final place to insert the new element.    
             break
-    self._elements[index] = element    
+    self._elements[index] = ???????    
 ```
 
 # Design Heap Top
@@ -214,13 +214,13 @@ def top(self):
             child_index = self._highest_priority_child_index(current_index)
             if child_index is None:
                 break
-            if self._has_lower_priority(element, self._elements[child_index]):
+            if self._has_lower_priority(???????, self._elements[child_index]):
                 self._elements[current_index] = self._elements[child_index]
                 current_index = child_index
             else:
                 break
 
-        self._elements[current_index] = element
+        self._elements[current_index] = ???????
 ```
 
 # Implement Heap Top Helper (_highest_priority_child_index)
@@ -238,7 +238,7 @@ def _highest_priority_child_index(self, index):
     if self._has_higher_priority(self._elements[first_index], self._elements[first_index + 1]):
         return first_index
     else:
-        return first_index + 1
+        return first_index ? 1
 ```
 
 # Design Heap Heapify
@@ -256,11 +256,11 @@ Takes O(n) comparison and assignments
 def _heapify(self, elements):
     self._elements = elements[:]
     last_inner_node_index = self._first_leaf_index() - 1
-    for index in range(last_inner_node_index, -1, -1):
+    for index in range(last_inner_node_index, ??, ??):
         self._push_down(index)
 
 def _first_leaf_index(self):
-    return len(self) // 2
+    return len(self) // ?
 ```
 
 # Find the k Largest Entries
@@ -275,16 +275,16 @@ sys.path.append(
 from heaps.heap import Heap
 
 def k_largest_elements(arr, k):
-    heap = Heap(element_priority=lambda x: -x)
+    heap = Heap(element_priority=lambda x: ??) # turn max-heap to min-heap
     for i in range(len(arr)):
         if len(heap) >= k:
-            if heap.peek() < arr[i]:
-                heap.top()
-                heap.insert(arr[i])
+            if heap.????() < arr[i]:
+                heap.???()
+                heap.??????(arr[i])
         else:
             heap.insert(arr[i])
     print(heap)        
-    return heap.top()
+    return heap.???()
 
 # main
 nums = [8, 7, 4, 3, 2, 1, 6]
