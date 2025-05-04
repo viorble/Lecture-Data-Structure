@@ -41,7 +41,7 @@ style: |
     font-size: 0.50rem;
   }
 ---
-# Chapter 8: Queue
+# Chapter 9: Queue
 ![bg right:50% w:90%](../Lecture-Data-Structure/restricted/queue_ice_cream.png)
 - **Queue** is a container that allows elements to be added or removed according to FIFO rule (first in, first out).
 
