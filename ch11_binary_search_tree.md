@@ -95,5 +95,48 @@ In BST, for any node N that stores a value v, all nodes in the left subtree of N
     <img src="restricted/tree_bst_order.png">
 </div>
 
+# Implement BST's Node (1/2)
+```python
+class Node:
+    def __init__(self, value, left=None, right=None):
+        self._value = value
+        self._left = left
+        self._right = right
+    def __str__(self):
+        left_str = str(self._left)
+        right_str = str(self._right)
+        return f"{self._value} ({left_str})({right_str})"
+    def value(self):
+        return self._value
+    def left(self):
+        return self._left
+    def right(self):
+        return self._right
+    def set_left(self, node):
+        self._left = node
+    def set_right(self, node):
+        self._right = node
+```
+# Implement BST's Node (1/2)
+```python
+    def find_min_in_subtree(self):
+    # Return the node with the smallest value in the subtree rooted at the node, and its parent
+        parent = None
+        node = self
+        while node.left() is not None:
+            parent = node
+            node = node.left()
+        return node, parent
+
+    def find_max_in_subtree(self):
+        # Return the node with the largest value in the subtree rooted at the node, and its parent.
+        parent = None
+        node = self
+        while node.right() is not None:
+            parent = node
+            node = node.right()
+        return node, parent
+```
+# Implement BST
 
 # Recap

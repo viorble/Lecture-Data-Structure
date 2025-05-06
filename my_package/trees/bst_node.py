@@ -1,7 +1,7 @@
 """A class modeling the nodes of the binary search tree."""
 
 
-class BSTNode:
+class Node:
     @staticmethod
     def _node_str(node):
         return str(node) if node is not None else ""
@@ -12,14 +12,14 @@ class BSTNode:
         self._right = right
 
     def __str__(self):
-        left_str = BSTNode._node_str(self._left)
-        right_str = BSTNode._node_str(self._right)
+        left_str = Node._node_str(self._left)
+        right_str = Node._node_str(self._right)
         return f"{self._value} ({left_str})({right_str})"
 
-    def __repr__(self):
-        left_node_id = id(self._left)
-        right_node_id = id(self._right)
-        return f"BST Node Address: {id(self)} (left: {left_node_id})(right: {right_node_id})"
+    # def __repr__(self):
+    #     left_node_id = id(self._left)
+    #     right_node_id = id(self._right)
+    #     return f"BST Node Address: {id(self)} (left: {left_node_id})(right: {right_node_id})"
 
     def value(self):
         return self._value
@@ -57,13 +57,12 @@ class BSTNode:
 
 if __name__ == "__main__":
     # Test the Node class
-    node10 = BSTNode(10)
-    node5 = BSTNode(5)
-    node15 = BSTNode(15)
+    node10 = Node(10)
+    node5 = Node(5)
+    node15 = Node(15)
     node10.set_left(node5)
     node10.set_right(node15)
-    print(node10)  # Output: 10 (5 ()())(15 ()())
-    print(repr(node10))
+    print(node10)
     min_node, min_parent = node10.find_min_in_subtree()
     print("min_node:", min_node)
     print("min_node_parent:", min_parent)

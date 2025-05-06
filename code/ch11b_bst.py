@@ -4,18 +4,18 @@ sys.path.append(
     "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package"
 )
 from stacks.stack_sll import Stack
-from trees.binary_search_tree_node import BSTNode
+from trees.bst_node import Node
 
 class BinarySearchTree:
 
-   def __init__(self):
+    def __init__(self):
         self._root = None
 
     def __repr__(self):
         return f'BinarySearchTree({str(self)})'
 
     def __str__(self):
-        return BSTNode._node_str(self._root)
+        return str(self._root)
 
     def __len__(self) -> bool:
         """Return the number of values stored in the tree."""
@@ -58,66 +58,51 @@ class BinarySearchTree:
 #                 current = current.right()
 
 
-#     def _search(self, value: any) -> tuple[Optional[type[BinarySearchTree.Node]], type[BinarySearchTree.Node]]:
-#         """Returns a tuple.
-#            The first element in the tuple is the node containing the target value,
-#            or None if not found. If the tree contains duplicates, it returns the first 
-#            node traversed that contains the target value.
-#            The second element in the tuple is the parent of the node in the first position.
-#            If the target wasn't found or if it was the root, the parent is set to None.
-#         """
-#         parent = None
-#         node = self._root
-#         while node is not None:
-#             node_val = node.value()
-#             if node_val == value:
-#                 return node, parent
-#             elif value < node_val:
-#                 parent = node
-#                 node = node.left()
-#             else:
-#                 parent = node
-#                 node = node.right()
-#         return None, None
+    def _search(self, value):
+        """Returns a tuple.
+           The first element in the tuple is the node containing the target value,
+           or None if not found. If the tree contains duplicates, it returns the first 
+           node traversed that contains the target value.
+           The second element in the tuple is the parent of the node in the first position.
+           If the target wasn't found or if it was the root, the parent is set to None.
+        """
+        parent = None
+        node = self._root
+        while node is not None:
+            node_val = node.value()
+            if node_val == value:
+                return node, parent
+            elif value < node_val:
+                parent = node
+                node = node.left()
+            else:
+                parent = node
+                node = node.right()
+        return None, None
 
 
-#     def contains(self, value: any) -> bool:
-#         """Return True if the tree contains the value, False otherwise.
+    def contains(self, value):
+        return self._search(value)[0] is not None
+
+
+    def insert(self, value):       
+        node = self._root
+        if node is None: # Empty tree
+            self._root = Node(value)
+            return None
         
-#         Args:
-#             value: The element to be searched in the tree.
-#         Returns: True if the value is found in the tree, False otherwise.
-#         """
-#         return self._search(value)[0] is not None
-
-
-#     def insert(self, value: any) -> None:
-#         """Insert a new value into the tree.
-        
-#         Args:
-#             value: The new element to be added to the tree.
-#         """
-#         node = self._root
-#         if node is None:
-#             # Empty tree
-#             self._root = BinarySearchTree.Node(value)
-#         else:
-#             while True: # node can never be None here
-#                 if value <= node.value():
-#                     if node.left() is None:
-#                         # We have found the right spot for value
-#                         node.set_left(BinarySearchTree.Node(value))
-#                         break
-#                     else:
-#                         # We keep traversing the left branch
-#                         node = node.left()
-#                 elif node.right() is None:
-#                     # We have found the right spot for value
-#                     node.set_right(BinarySearchTree.Node(value))
-#                     break
-#                 else:
-#                     # We keep traversing the right branch
-#                     node = node.right()
+        while node is not None:
+            if value <= node.value():
+                if node.left() is None:
+                    node.set_left(Node(value))
+                    break
+                else:
+                    node = node.left() # We keep traversing the left branch
+            elif node.right() is None:
+                    node.set_right(Node(value))
+                    break
+            else:
+                node = node.right()  # We keep traversing the right branch
 
 #     def delete(self, value: any) -> None:
 #         """ Delete a value from the tree.
@@ -160,3 +145,18 @@ class BinarySearchTree:
 #                 parent.set_left(new_node)
 #             else:
 #                 parent.set_right(new_node)
+
+if __name__ == '__main__':
+    bst = BinarySearchTree()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(7)
+    bst.insert(2)
+    bst.insert(4)
+    bst.insert(6)
+    bst.insert(8)
+
+    print(bst)  # Should print the BST structure
+    print(len(bst))  # Should print the number of nodes in the BST
+    print(bst.contains(4))  # Should return True
+    print(bst.contains(10))  # Should return False
