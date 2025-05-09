@@ -88,7 +88,7 @@ def pop(self):
         raise ValueError("Cannot pop from an empty stack")
     return self._data.?????????????????() #delete_from_front()
 
-def peek(self):
+def peek(self):  # access the data, not pop it
     if self.is_empty():
         raise ValueError("Cannot peek at an empty stack")
     return self._data.?????.data() #head

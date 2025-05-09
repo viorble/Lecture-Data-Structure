@@ -79,7 +79,7 @@ A **linked list** is made of nodes
   - First element of a linked list, no other node points to it
   - Use a variable point to the head node
 - Tail node
-  - Last element of the list, not point to next node, point to Null
+  - Last element of the list, not point to next node, point to Null (None)
 - Each node only knows its successor
 
 # Requirements of Singly Linked List
@@ -303,8 +303,7 @@ def insert(self, new_data):
     <img src="add_image/ch6/linked_list_doubly_example1.png">
 </div>
 
-- If we have a link to a single node of the list, we can reach any other node in the
-  list, both before and after it.
+- If we have two links in a single node of the list, we can reach any other node in the list, both before and after it.
 - Weak points
   - Each node of a DLL takes up more space than SLL.
   - Each node insertion or deletion action, we need update two links.

@@ -43,11 +43,9 @@ class Node:
 
 if __name__ == "__main__":
     node_a = Node(1)
-    print(node_a)
-    print(repr(node_a))
     node_b = Node(2)
     node_a.append(node_b)
     print(repr(node_a))
     print(repr(node_b))
-    print(node_a.has_next())
-    print(node_b.has_next())
+#     print(node_a.has_next())
+#     print(node_b.has_next())
