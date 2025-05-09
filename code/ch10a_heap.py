@@ -43,7 +43,7 @@ class Heap:
                 if self._has_lower_priority(
                     current_element, self._elements[child_index]
                 ):
-                    return False  # pragma: no cover
+                    return False
             current_index += 1
         return True
 
@@ -204,7 +204,7 @@ class Heap:
             level_end = level_start + level_size
             level = self._elements[level_start:level_end]
             result += (
-                "Level " + str(height) + " -> " + " ".join(str(x) for x in level) + "\n"
+                "Level " + str(height) + " ⮕ " + " ".join(str(x) for x in level) + "\n"
             )
             height += 1
             level_start = level_end
@@ -235,6 +235,17 @@ if __name__ == "__main__":
     print(foo)
 
     foo = Heap([9, 4, 1, 3, 7, 8, 2, 6, 5])
+    print('list = ', '[9, 4, 1, 3, 7, 8, 2, 6, 5]')
     print(repr(foo))
+
+    print('list = ', '[9, 8, 7, 6, 5, 4, 3, 2, 1]')
+    foo = Heap([9, 8, 7, 6, 5, 4, 3, 2, 1])
+    print(repr(foo))
+
+    print('list = ', '[1, 2, 3, 4, 5, 6, 7, 8, 9]')
+    foo = Heap([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    print(repr(foo))
+    
+    print()
     boo = Heap([9, 4, 1, 3, 7, 8, 2, 6, 5], lambda x: -x)
     print(repr(boo))

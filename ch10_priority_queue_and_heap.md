@@ -59,9 +59,11 @@ Priority queue always return the element with the highest priority. Two methods 
 # Sorted Data Structures to Implement Priority Queue
 - Sorted array
 - Sorted linked list
+- Insertion is O(n): go through the whole list
+- Extracting the highest priority element is O(1): at the front of a linked list or at the end of an array.
 <div class="middle-grid">
-    <img src="restricted/priority_queue_sorted_linked_list.png">
     <img src="restricted/priority_queue_sorted_array.png">
+    <img src="restricted/priority_queue_sorted_linked_list.png">
 </div>
 
 # Unsorted Data Structures to Implement Priority Queue
@@ -87,7 +89,7 @@ A heap is a special kind of tree. It can be **binary heaps** or **d-way heaps** 
 1. A binary heap, each node of the tree can have at most two children
 2. Heap tree is “almost complete”
    - Every level of the tree is complete, except the last level 
-   - Nodes on the last level are as far left as possible
+   - Nodes on the last level are as far left as possible (盡可能靠左)
 3. each node holds the highest priority element in the subtree rooted at that node
 <div class="middle-grid">
     <img src="restricted/heap_complete.png">
@@ -137,16 +139,16 @@ class Heap:
             self._elements = []
 
     def _has_lower_priority(self, element_1, element_2):
-        return self._priority(element_1) < self._priority(element_2)
+        return self._priority(element_1) < self.?????????(element_2)
     
     def _has_higher_priority(self, element_1, element_2):
-        return self._priority(element_1) > self._priority(element_2)
+        return self._priority(element_1) ? self._priority(element_2)
     
     def _left_child_index(self, index):
-        return index * 2 + 1
+        return index * ? + ?
     
     def _parent_index(self, index):
-        return (index - 1) // 2        
+        return (index ? ?) ?? 2        
 ```
 # Design Heap Insert
 
@@ -154,6 +156,7 @@ class Heap:
     <img src="restricted/heap_insert_1.png">
     <img src="restricted/heap_insert_2.png">
 </div>
+<br>
 <div class="middle-grid">
     <img src="restricted/heap_insert_3.png">
     <img src="restricted/heap_insert_4.png">
@@ -168,15 +171,15 @@ def insert(self, element):
 def _bubble_up(self, index):
     element = self._elements[index]
     while index > 0:
-        parent_index = self._parent_index(index)
+        parent_index = self.?????????????(index)
         parent = self._elements[parent_index]
         if self._has_higher_priority(???????, parent):
         # There is a violation of the heap’s property, nad we need to swap the new element with its parent
             self._elements[index] = ?????
-            index = parent_index
+            index = ????????????
         else:
         # The new element and its parent don’t violate the heap’s properties, so we have found the final place to insert the new element.    
-            break
+            ?????
     self._elements[index] = ???????    
 ```
 
@@ -199,8 +202,8 @@ def top(self):
         element = self._elements.pop()
     else:
         element = self._elements[0]
-        self._elements[0] = self._elements.pop()
-        self._push_down(0)
+        self._elements[?] = self._elements.???()
+        self._push_down(?)
     return element
 ```
 # Implement Heap Top Helper (_push_down)
@@ -262,8 +265,18 @@ def _heapify(self, elements):
 def _first_leaf_index(self):
     return len(self) // ?
 ```
+Assume i is the last internal node ⮕ 2i + 1 < n ⮕ 2i + 1 <= n - 1 ⮕ 2i <= n -2 ⮕ i <= n/2 -1
+The 1st leaf node is i + 1 ⮕ n/2 ⮕ considering one-child and two-child cases, we use n//2 
 
-# Find the k Largest Entries
+# Design 'Find the k Largest Entries'
+![bg right:50% w:90%](files/image/heap_find_k_largest_num.png)
+
+Maintain a min-heap of the top k elements seen so far.
+Iterate through all elements:
+- If the heap has fewer than k elements → push it in.
+- Else if the element is larger than the smallest (root) in the heap → pop the smallest and push the new one.
+
+# Implement 'Find the k Largest Entries'
 ```python
 """Module providing an implementation for stack, using singly-linked lists to store the elements."""
 import sys
@@ -294,8 +307,7 @@ print(k_largest_elements(nums, k))
 
 # Recap
 - A priority queue is an abstract data type that provides two operations: insert and top.
-- Priority queues can be implemented using different data structures, but the maximally efficient implementation is achieved using heaps.
+- Priority queues can be implemented using different data structures, but heaps is the most efficient way.
 - A binary heap is a special type of tree. It’s a binary, almost complete tree, where each node has a priority higher than or equal to its children’s.
 - Heaps have another characteristic. They are a tree that is better implemented as an array. This is possible because a heap is an almost complete tree.
 - With the array implementation of a heap, we can build a priority queue where insert and top take O(log n) time.
-- Additionally, it’s possible to transform an array of n elements into a heap in linear time, using the heapify method.
