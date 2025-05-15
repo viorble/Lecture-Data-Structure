@@ -14,17 +14,17 @@ def k_largest_elements(arr, k):
             if heap.peek() < arr[i]:
                 heap.top()
                 heap.insert(arr[i])
+                print(heap)
         else:
             heap.insert(arr[i])
             print('inserted', arr[i])
+            print(heap)
     print(heap)        
     return heap.top()
 
 # main
-nums = [8, 7, 4, 3, 2, 1, 6]
-k = 4
-print(k_largest_elements(nums, k)) 
-
 nums = [6, 5, 2, 1, 8, 7]
 k = 3
-print(k_largest_elements(nums, k)) 
+print(k_largest_elements(nums, k))
+
+

@@ -160,6 +160,10 @@ if __name__ == '__main__':
     bst.insert(8)
 
     print(bst)  # Should print the BST structure
-    print(len(bst))  # Should print the number of nodes in the BST
+    print('length:', len(bst))  # Should print the number of nodes in the BST
     print(bst.contains(4))  # Should return True
     print(bst.contains(10))  # Should return False
+    bst.delete(4)  # Should delete the node with value 4
+    print(bst)  # Should print the BST structure after deletion
+    bst.delete(7)   # Should delete the node with value 7  
+    print(bst)  # Should print the BST structure after deletion

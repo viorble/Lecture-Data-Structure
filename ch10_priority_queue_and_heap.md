@@ -150,7 +150,7 @@ class Heap:
     def _parent_index(self, index):
         return (index ? ?) ?? 2        
 ```
-# Design Heap Insert
+# Design Heap Insert (Bubble Up)
 
 <div class="middle-grid">
     <img src="restricted/heap_insert_1.png">
@@ -183,7 +183,7 @@ def _bubble_up(self, index):
     self._elements[index] = ???????    
 ```
 
-# Design Heap Top
+# Design Heap Top (Push Down)
 
 <div class="middle-grid">
     <img src="restricted/heap_top_1.png">
@@ -265,7 +265,7 @@ def _heapify(self, elements):
 def _first_leaf_index(self):
     return len(self) // ?
 ```
-Assume i is the last internal node ⮕ 2i + 1 < n ⮕ 2i + 1 <= n - 1 ⮕ 2i <= n -2 ⮕ i <= n/2 -1
+Assume i is the index of last internal node ⮕ 2i + 1 < n ⮕ 2i + 1 <= n - 1 ⮕ 2i <= n -2 ⮕ i <= n/2 -1
 The 1st leaf node is i + 1 ⮕ n/2 ⮕ considering one-child and two-child cases, we use n//2 
 
 # Design 'Find the k Largest Entries'
@@ -282,32 +282,32 @@ Iterate through all elements:
 import sys
 
 sys.path.append(
-    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package"
-)
-
+    "/Users/jacky/Library/Mobile Documents/com~apple~CloudDocs/交大教學/DSA/Lecture-Data-Structure/my_package")
 from heaps.heap import Heap
 
 def k_largest_elements(arr, k):
-    heap = Heap(element_priority=lambda x: ??) # turn max-heap to min-heap
+    heap = Heap(element_priority=lambda x: -x)
     for i in range(len(arr)):
         if len(heap) >= k:
-            if heap.????() < arr[i]:
-                heap.???()
-                heap.??????(arr[i])
+            if heap.peek() < arr[i]:
+                heap.top()
+                heap.insert(arr[i])
+                print(heap)
         else:
             heap.insert(arr[i])
+            print('inserted', arr[i])
+            print(heap)
     print(heap)        
-    return heap.???()
-
+    return heap.top()
 # main
-nums = [8, 7, 4, 3, 2, 1, 6]
-k = 4
-print(k_largest_elements(nums, k)) 
+nums = [6, 5, 2, 1, 8, 7]
+k = 3
+print(k_largest_elements(nums, k))
 ```
 
 # Recap
 - A priority queue is an abstract data type that provides two operations: insert and top.
-- Priority queues can be implemented using different data structures, but heaps is the most efficient way.
+- Priority queues can be implemented using different data structures, but heap is the most efficient way.
 - A binary heap is a special type of tree. It’s a binary, almost complete tree, where each node has a priority higher than or equal to its children’s.
 - Heaps have another characteristic. They are a tree that is better implemented as an array. This is possible because a heap is an almost complete tree.
 - With the array implementation of a heap, we can build a priority queue where insert and top take O(log n) time.
