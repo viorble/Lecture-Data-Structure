@@ -68,8 +68,8 @@ Priority queue always return the element with the highest priority. Two methods 
 - Extracting the highest priority element is O(1): at the front of a linked list or at the end of an array.
 
 <div class="middle-grid">
-    <img src="restricted/priority_queue_sorted_array.png">
-    <img src="restricted/priority_queue_sorted_linked_list.png">
+    <img src="add_image/ch10/priority_queue_sorted_array.png">
+    <img src="add_image/ch10//priority_queue_sorted_linked_list.png">
 </div>
 
 # Unsorted Data Structures to Implement Priority Queue
@@ -80,8 +80,8 @@ Priority queue always return the element with the highest priority. Two methods 
 - Extracting the highest priority element is O(n): go through the whole list.
 
 <div class="middle-grid">
-    <img src="restricted/priority_queue_unsorted_array.png">
-    <img src="restricted/priority_queue_bigO_compare.png">
+    <img src="add_image/ch10//priority_queue_unsorted_array.png">
+    <img src="add_image/ch10//priority_queue_bigO_compare.png">
 </div>
 Can we have a balance between insert() and top()?
 
@@ -269,15 +269,15 @@ def _highest_priority_child_index(self, index):
     if self._has_higher_priority(self._elements[first_index], self._elements[first_index + 1]):
         return first_index
     else:
-        return first_index ? 1
+        return first_index ? 1 #+
 ```
 
 # Design Heap Heapify
 
 <div class="middle-grid">
-    <img src="restricted/heap_heapify_1.png">
-    <img src="restricted/heap_heapify_2.png">
-    <img src="restricted/heap_heapify_3.png">
+    <img src="add_image/ch10/heapify1.png">
+    <img src="add_image/ch10/heapify2.png">
+    <img src="add_image/ch10/heapify3.png">
 </div>
 
 # Implement Heap Heapipy
@@ -288,17 +288,25 @@ Takes O(n) comparison and assignments
 def _heapify(self, elements):
     self._elements = elements[:]
     last_inner_node_index = self._first_leaf_index() - 1
-    for index in range(last_inner_node_index, ??, ??):
+    for index in range(last_inner_node_index, ??, ??): #-1 #-1
         self._push_down(index)
 
 def _first_leaf_index(self):
-    return len(self) // ?
+    return len(self) // ? #2
 ```
 Assume i is the index of last internal node ⮕ 2i + 1 < n ⮕ 2i + 1 <= n - 1 ⮕ 2i <= n -2 ⮕ i <= n/2 -1
 The 1st leaf node is i + 1 ⮕ n/2 ⮕ considering one-child and two-child cases, we use n//2 
 
 # Design 'Find the k Largest Entries'
+1. **初始化一個大小為 k 的 min-heap。**
 
+2. **依序讀取每一個元素**（不管是前 k 個還是後面的 n-k 個，全部都要走一次）：
+    - 如果 heap 裡面還不到 k 個，就直接丟進 heap。
+    - 如果 heap 已經滿了 k 個，則每次把新元素和 heap 的 root（最小的那個）比較：
+        - 如果新元素比較大，就把最小的踢掉，放進新元素（pop + push）。
+        - 如果新元素沒那麼大，就什麼都不做。
+
+3. **最後 heap 裡的 k 個元素就是最大的 k 個數**（順序未必有序，如果需要排序可以額外處理）。
 ![bg right:50% w:90%](files/image/heap_find_k_largest_num.png)
 
 Maintain a min-heap of the top k elements seen so far.

@@ -42,7 +42,7 @@ style: |
   }
 ---
 # Chapter 11: Binary Search Tree
-![bg right:50% w:90%](../Lecture-Data-Structure/restricted/tree_concept.png)
+![bg right:50% w:90%](../Lecture-Data-Structure-1/add_image/ch11/tree_concept.png)
 - A generic tree is a data structure that consists of nodes connected by links. 
 - Each node contains a value and a variable number of links to other nodes, from zero to some number k (the branching number of a k-ary tree, that is, the maximum number of links a node can have).
 
@@ -53,7 +53,7 @@ style: |
 - Internal node: node has child nodes (2, 8, 6, 3)
 - No loop in a tree: any path from the root to a leaf, you never see the same node twice
 <div class="middle-grid">
-    <img src="restricted/tree_concept.png">
+    <img src="/add_image/ch11/tree_concept.png">
 </div>
 
 # Terminology of Tree (2/2)
@@ -63,11 +63,11 @@ style: |
 - Subtree: a portion of the tree containing a node R and all the descendants of R.
 - Height: the length of the longest path from the root to a leaf
 <div class="middle-grid">
-    <img src="restricted/tree_terminology.png">
+    <img src="/add_image/ch11/tree_terminology.png">
 </div>
 
 # Compare Linked List to Trees
-![](restricted/tree_compart_linked_list.png)
+![](/add_image/ch11/tree_compart_linked_list.png)
 
 # Binary Tree
 Binary trees are defined by restricting each node to a maximum of two children.
@@ -76,7 +76,7 @@ Binary trees are defined by restricting each node to a maximum of two children.
 - The order of the children, however, isn’t always important for all binary trees.
  
 <div class="middle-grid">
-    <img src="restricted/tree_binary_ternary.png">
+    <img src="/add_image/ch11/tree_binary_ternary.png">
 </div>
 
 # Binary Search Trees
@@ -92,14 +92,14 @@ A binary search tree (BST) has some properties
 In BST, for any node N that stores a value v, all nodes in the left subtree of N will have values less than or equal to v, and all nodes in the right subtree of N will have values greater than v
 
 <div class="middle-grid">
-    <img src="restricted/tree_bst_order.png">
+    <img src="/add_image/ch11/tree_bst_order.png">
 </div>
 
 # Design to Find the Minimum and Maximum Elements in a Tree
 - Get the maximum element, we start at the root and follow the links to the right children until we reach a node that has no right child. This node (which could be the root itself) stores the maximum value in the tree.
 - Get the minimum element, we start at the root and follow the links to the left children until we reach a node that has no left child.
 <div class="middle-grid">
-    <img src="restricted/tree_min_max.png">
+    <img src="/add_image/ch11/tree_min_max.png">
 </div>
 
 # Implement BST's Node (1/2)
@@ -133,22 +133,13 @@ class Node:
 
 # Implement BST's Node (2/2)
 ```python
-    def find_min_in_subtree(self):
-    # Return the node with the smallest value in the subtree rooted at the node, and its parent
-        parent = None
-        node = self
-        while node.left() is not None:
-            parent = ????
-            node = node.????()
-        return node, parent
-
     def find_max_in_subtree(self):
         # Return the node with the largest value in the subtree rooted at the node, and its parent.
         parent = None
         node = self
         while node.right() is not None:
             parent = node
-            node = node.?????()
+            node = node.?????() #right
         return node, parent
 ```
 # Implement BST Helper Functions
@@ -178,8 +169,8 @@ class BinarySearchTree:
 
 # Design BST Search
 <div class="middle-grid">
-    <img src="restricted/tree_search_1.png">
-    <img src="restricted/tree_search_2.png">
+    <img src="/add_image/ch11/tree_search_1.png">
+    <img src="/add_image/ch11/tree_search_2.png">
 </div>
 The search method follows a single path, from the root to (possibly) a leaf, means that it will take no more steps than the height of the tree — it needs O(h) comparisons, where h is the height of the tree.
 
@@ -210,7 +201,7 @@ def _search(self, value):
 
 # Design BST Insert
 <div class="middle-grid">
-    <img src="restricted/tree_insert.png">
+    <img src="/add_image/ch11/tree_insert.png">
 </div>
 
 - In general, when we get to a node, we first check the value it stores to understand which branch we need to traverse and whether we need to go left or right. 
@@ -227,16 +218,16 @@ def insert(self, value):
         
         while node is not None:
             if value <= node.value():
-                if node.left() is ????:
-                    node.set_????(Node(value))
+                if node.left() is ????: #None
+                    node.set_????(Node(value)) #left
                     break
                 else:
-                    node = node.????() # We keep traversing the left branch
-            elif node.right() is ????:
-                    node.set_?????(Node(value))
+                    node = node.????()#left # We keep traversing the left branch 
+            elif node.right() is ????: #None
+                    node.set_?????(Node(value)) #right
                     break
             else:
-                node = node.?????()  # We keep traversing the right branch
+                node = node.?????() #right # We keep traversing the right branch
 ```
 
 # Design DST Delete (1/2)
