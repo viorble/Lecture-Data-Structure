@@ -27,25 +27,25 @@ class Heap:
         """Checks if the first element has higher priority to the second element."""
         return self._priority(element_1) > self._priority(element_2)
 
-    def _validate(self):
-        """Checks that the three properties for heaps are abided by.
-        1.	Every node has at most 2 children.
-        2.	The heap tree is almost-complete and left-adjusted.
-        3.	Every node holds the highest priority in the subtree rooted at that node.
-        """
-        current_index = 0
-        first_leaf = self._first_leaf_index()
-        while current_index < first_leaf:
-            current_element = self._elements[current_index]
-            first_child = self._left_child_index(current_index)
-            last_child_guard = min(first_child + 2, len(self))
-            for child_index in range(first_child, last_child_guard):
-                if self._has_lower_priority(
-                    current_element, self._elements[child_index]
-                ):
-                    return False
-            current_index += 1
-        return True
+    # def _validate(self):
+    #     """Checks that the three properties for heaps are abided by.
+    #     1.	Every node has at most 2 children.
+    #     2.	The heap tree is almost-complete and left-adjusted.
+    #     3.	Every node holds the highest priority in the subtree rooted at that node.
+    #     """
+    #     current_index = 0
+    #     first_leaf = self._first_leaf_index()
+    #     while current_index < first_leaf:
+    #         current_element = self._elements[current_index]
+    #         first_child = self._left_child_index(current_index)
+    #         last_child_guard = min(first_child + 2, len(self))
+    #         for child_index in range(first_child, last_child_guard):
+    #             if self._has_lower_priority(
+    #                 current_element, self._elements[child_index]
+    #             ):
+    #                 return False
+    #         current_index += 1
+    #     return True
 
     def _left_child_index(self, index):
         # Computes the index of the left child of a heap node.
