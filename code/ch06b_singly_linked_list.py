@@ -58,7 +58,25 @@ class SinglyLinkedList:
             current.append(Node(data))
 
     def get(self, index):  # Get the data at the given index.
-        pass  # homework
+        # Get the data at the given index.
+        if index < 0:
+            raise IndexError("Index must be non-negative")
+        if index > len(self) - 1:
+            raise IndexError("Index out of bounds")
+        if self._head is None:
+            raise IndexError("Empty Linked List")
+    
+        current = self._head
+        current_index = 0
+        while current_index < index and current is not None:
+            current = current.next()
+            current_index += 1
+        
+        if current is None:
+            raise IndexError("Index out of bounds")
+    
+        return current.data()
+
 
     def search(self, target):
         # Search the list for a node with the data matching `target`.
@@ -69,9 +87,8 @@ class SinglyLinkedList:
             current = current.next()
         return None
 
-    def delete(
-        self, target
-    ):  # Delete the first node with the given data from the list.
+    def delete(self, target):  
+        # Delete the first node with the given data from the list.
         current = self._head
         previous = None
         while current is not None:
@@ -88,41 +105,34 @@ class SinglyLinkedList:
         )  # If get here, no found
 
     def delete_from_front(self):  # Delete the first node
-        pass  # homework
-
+        if self.is_empty():
+            raise ValueError('Delete on an empty list.')
+        data = self._head.data()
+        self._head = self._head.next()
+        return data
+    def concatenate(self, sll): # Concatenate two singly linked lists.
+        if self.is_empty():
+            self._head = sll._head
+        else:
+            current = self._head
+        while current.next() is not None:
+            current = current.next()
+        current.append(sll._head)
 
 if __name__ == "__main__":
     foo = SinglyLinkedList()
-    foo.insert_to_back(1)
-    foo.insert_to_back(2)
+    foo.insert_in_front(1)
+    foo.insert_in_front(2)
     foo.insert_in_front(0)
-    print("STR:", foo, "REPR:", repr(foo))
-    print(len(foo), foo.size())
-    print(foo.search(0))
-    # test empty list deletion
+    print(foo)
+    print(foo.get(1))
+    print(foo.delete_from_front())
+    print(foo)
+
     boo = SinglyLinkedList()
-    try:
-        boo.delete(0)
-    except ValueError as e:
-        print(e)
-    # test delete first node
-    boo = SinglyLinkedList()
-    boo.insert_to_back(1)
-    boo.insert_to_back(2)
-    boo.insert_to_back(3)
-    boo.delete(1)
+    boo.insert_in_front(100)
+    boo.insert_in_front(200)
     print(boo)
-    # test delete last node
-    boo = SinglyLinkedList()
-    boo.insert_to_back(1)
-    boo.insert_to_back(2)
-    boo.insert_to_back(3)
-    boo.delete(3)
-    print(boo)
-    # test delete middle node
-    boo = SinglyLinkedList()
-    boo.insert_to_back(1)
-    boo.insert_to_back(2)
-    boo.insert_to_back(3)
-    boo.delete(2)
-    print(boo)
+
+    foo.concatenate(boo)
+    print(foo)
