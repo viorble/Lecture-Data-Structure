@@ -137,10 +137,10 @@ class BinarySearchTree:
             if max_node_parent is None: # M is the left child of N.
                 new_node = Node(max_node.value(), None, node.right())
             else:
+            # Then  replace the node to be deleted with a new node with M.value(),
                 new_node = Node(max_node.value(), node.left(), node.right())
                 max_node_parent.set_right(max_node.left())
-            # Then  replace the node to be deleted with a new node with M.value(),
-            # and the same subtrees as N.
+            
             if parent is None:
                 # The node is the root
                 self._root = new_node

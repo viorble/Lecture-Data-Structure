@@ -65,7 +65,21 @@ class DoublyLinkedList:
             self._tail.prepend(old_tail)
 
     def insert_in_middle(self, data, index):
-        pass # Homework       
+        if index < 0:
+            raise IndexError("Index must be non-negative")
+        if index == 0:
+            self.insert_in_front(data)
+            return
+        current = self._head
+        current_index = 0
+        while current_index < index - 1 and current is not None:
+            current = current.next()
+            current_index += 1
+        if current is None:
+            raise IndexError("Index out of bounds")
+        new_node = DoublyLinkedNode(data)
+        new_node.append(current.next())
+        current.append(new_node)       
 
     def get(self, index):
         if index < 0:
@@ -147,18 +161,9 @@ if __name__ == "__main__":
     foo = DoublyLinkedList()
     foo.insert_in_front(1)
     foo.insert_in_front(2)
-    foo.insert_to_back(3)
-    foo.insert_to_back(4)
+    foo.insert_in_front(3)
+    foo.insert_in_front(4)
     print(foo)
-    print(repr(foo))
-    print(len(foo))
-    print(foo.size())
-    print(foo.is_empty())
-    print("index 0:", foo.get(0))
-    print("position of value 3:", foo.indexing(3))
-    foo.delete(3)
-    print("after delete 3:", foo)
-    foo.delete_from_front()
-    print("after delete from front:", foo)
-    foo.delete_from_back()
-    print("after delete from back:", foo)
+    foo.insert_in_middle(100,3)
+    print(foo)
+    
