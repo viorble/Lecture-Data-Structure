@@ -293,6 +293,16 @@ def delete(self, value):
             else:
                 parent.set_right(new_node)
 ```
+# Illustrate BST Delete
+<div class="columns">
+    <img src="files/image/tree_delete_example_1.png">
+    <img src="files/image/tree_delete_example_2.png">
+</div>
+
+# Tree Category
+<div class="columns">
+    <img src="files/image/tree_category.png">
+</div>
 
 # Recap
 - Trees are data structures consisting of nodes. Each node stores a value and a certain number of links to children. Each child is the root of a valid subtree.
@@ -300,3 +310,14 @@ def delete(self, value):
 - Links to children in a binary tree are usually labeled “left” and “right.” In some, but not all, binary trees, this distinction may have a meaning.
 - In BST, for any node N, the left subtree of N can only contain values not greater than N’s, and the right subtree can only contain values greater than N’s. 
 - BSTs are good for search — if the tree is balanced, search can be completed by comparing at most O(log(n)) elements.
+
+# W3 School
+[Arrays](https://www.w3schools.com/dsa/exercise.php?filename=exercise_data_arrays1)
+[Linear Search](https://www.w3schools.com/dsa/exercise.php?filename=exercise_algo_linearsearch1)
+[Binary Search](https://www.w3schools.com/dsa/exercise.php?filename=exercise_algo_binarysearch1)
+[Linked List](https://www.w3schools.com/dsa/exercise.php?filename=exercise_theory_linkedlists1)
+[Stacks](https://www.w3schools.com/dsa/exercise.php?filename=exercise_data_stacks1)
+[Queues](https://www.w3schools.com/dsa/exercise.php?filename=exercise_data_queues1)
+[Trees](https://www.w3schools.com/dsa/exercise.php?filename=exercise_theory_trees1)
+[Binary Trees](https://www.w3schools.com/dsa/exercise.php?filename=exercise_data_binarytrees1)
+[Binary Search Trees](https://www.w3schools.com/dsa/exercise.php?filename=exercise_data_binarysearchtrees1)
