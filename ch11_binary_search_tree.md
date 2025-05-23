@@ -133,6 +133,17 @@ class Node:
 
 # Implement BST's Node (2/2)
 ```python
+    
+    ;def find_min_in_subtree(self):
+            # Return the node with the smallest value in the subtree rooted at the node, and its parent
+            parent = None
+            node = self
+            while node.left() is not None:
+                parent = node
+                node = node.left()
+            return node, parent
+
+
     def find_max_in_subtree(self):
         # Return the node with the largest value in the subtree rooted at the node, and its parent.
         parent = None
