@@ -170,7 +170,7 @@ class SinglyLinkedList:
 ```
 
 # Implement Singly Linked List - Helper Functio
-
+``` python
     def traverse(self, functor):
 
     # Traverse the linked list to put data into a list after applying functor to each node's data.
@@ -195,7 +195,7 @@ class SinglyLinkedList:
         return ???? # size
     def is_empty(self):
         return self._head is ???? # None
-
+```
 # Design Singly Linked List - Search
 
 <div class="columns">
@@ -241,6 +241,8 @@ Time complexity O(n)
 - What is the time complexity Big-O?
   - O(n)
 
+
+
 # Implement Singly Linked List - Delete
 
 ```python
@@ -248,13 +250,13 @@ Time complexity O(n)
     # Delete the first node with the given data from the list.
         current = self.????? # _head
         previous = ????  # None
-        while current is not None:
+        while current is not None:# is not empty
             if current.data() == target:
                 if previous is None:  # delete the head of the list
                     self._head = current.next()
                 else: # previous, current.next
                     ????????.append(???????.????()) # a node in the middle or at the end
-                return
+                return #
             previous = current
             current = current.next()
         raise ValueError(f"No element with value {target} was found.")

@@ -53,7 +53,7 @@ style: |
 - Internal node: node has child nodes (2, 8, 6, 3)
 - No loop in a tree: any path from the root to a leaf, you never see the same node twice
 <div class="middle-grid">
-    <img src="/add_image/ch11/tree_concept.png">
+    <img src="add_image/ch11/tree_concept.png">
 </div>
 
 # Terminology of Tree (2/2)
@@ -63,7 +63,7 @@ style: |
 - Subtree: a portion of the tree containing a node R and all the descendants of R.
 - Height: the length of the longest path from the root to a leaf
 <div class="middle-grid">
-    <img src="/add_image/ch11/tree_terminology.png">
+    <img src="add_image/ch11/tree_terminology.png">
 </div>
 
 # Compare Linked List to Trees
@@ -76,7 +76,7 @@ Binary trees are defined by restricting each node to a maximum of two children.
 - The order of the children, however, isn’t always important for all binary trees.
  
 <div class="middle-grid">
-    <img src="/add_image/ch11/tree_binary_ternary.png">
+    <img src="add_image/ch11/tree_binary_ternary.png">
 </div>
 
 # Binary Search Trees
@@ -92,14 +92,14 @@ A binary search tree (BST) has some properties
 In BST, for any node N that stores a value v, all nodes in the left subtree of N will have values less than or equal to v, and all nodes in the right subtree of N will have values greater than v
 
 <div class="middle-grid">
-    <img src="/add_image/ch11/tree_bst_order.png">
+    <img src="add_image/ch11/tree_bst_order.png">
 </div>
 
 # Design to Find the Minimum and Maximum Elements in a Tree
 - Get the maximum element, we start at the root and follow the links to the right children until we reach a node that has no right child. This node (which could be the root itself) stores the maximum value in the tree.
 - Get the minimum element, we start at the root and follow the links to the left children until we reach a node that has no left child.
 <div class="middle-grid">
-    <img src="/add_image/ch11/tree_min_max.png">
+    <img src="add_image/ch11/tree_min_max.png">
 </div>
 
 # Implement BST's Node (1/2)
@@ -180,8 +180,8 @@ class BinarySearchTree:
 
 # Design BST Search
 <div class="middle-grid">
-    <img src="/add_image/ch11/tree_search_1.png">
-    <img src="/add_image/ch11/tree_search_2.png">
+    <img src="add_image/ch11/tree_search_1.png">
+    <img src="add_image/ch11/tree_search_2.png">
 </div>
 The search method follows a single path, from the root to (possibly) a leaf, means that it will take no more steps than the height of the tree — it needs O(h) comparisons, where h is the height of the tree.
 
@@ -212,7 +212,7 @@ def _search(self, value):
 
 # Design BST Insert
 <div class="middle-grid">
-    <img src="/add_image/ch11/tree_insert.png">
+    <img src="add_image/ch11/tree_insert.png">
 </div>
 
 - In general, when we get to a node, we first check the value it stores to understand which branch we need to traverse and whether we need to go left or right. 
@@ -247,23 +247,29 @@ def insert(self, value):
  - Case 3: delete a node having two children
 
 <div class="middle-grid">
-    <img src="restricted/tree_delete_cases.png">
-    <img src="restricted/tree_delete_leaf.png">
-    <img src="restricted/tree_delete_one_child.png">
+    <img src="add_image/ch11/tree_delete_cases.png">
+    <img src="add_image/ch11/tree_delete_leaf.png">
+    <img src="add_image/ch11/tree_delete_one_child.png">
 </div>
 
 # Design DST Delete (2/2)
+Search for X
+    分位三種 cases:
+1. X is leaf , delete X then exit.
+2. X is degree-1 node,X 父點指標指向唯一X.兒子,then exit
+3. X is degree-2 node,以X(左子數最大值) ||(右子樹最小值)並令其為Y取代X,相當於delete Y, then Case 1 || Case 2 處理 Y 之刪除
+
 <div class="middle-grid">
-    <img src="restricted/tree_delete_two_children_1.png">
-    <img src="restricted/tree_delete_two_children_2.png">
-    <img src="restricted/tree_delete_two_children_3.png">
+    <img src="add_image/ch11/tree_delete_two_children_1.png">
+    <img src="add_image/ch11/tree_delete_two_children_2.png">
+    <img src="add_image/ch11/tree_delete_two_children_3.png">
 </div>
 
 # Implement BST Delete
 ```python
 def delete(self, value):
         if self._root is None:
-            raise ValueError('Delete on an empty tree')
+            raise ValueError('Delete on an empty tree') #空的tree
         node, parent = self._search(value)
         if node is None:
             raise ValueError('Value not found')
