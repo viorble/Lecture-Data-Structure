@@ -302,9 +302,10 @@ def delete(self, value):
                 parent.set_right(new_node)
 ```
 # Illustrate BST Delete
-<div class="columns">
+<div class="middle-grid">
     <img src="files/image/tree_delete_example_1.png">
     <img src="files/image/tree_delete_example_2.png">
+    <img src="files/image/tree_delete_example_3.png">
 </div>
 
 # Tree Category
